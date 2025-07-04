@@ -86,6 +86,14 @@ export default function Gallery() {
             <p className="gallery-artwork-price">${art.price.toFixed(2)}</p>
             <h3 className="gallery-artwork-title">{art.title}</h3>
             <p className="gallery-artwork-tags">{art.tags?.join(', ')}</p>
+            <a
+              href={`mailto:youremail@example.com?subject=Enquiry about artwork: ${encodeURIComponent(art.title)}`}
+              className="enquire-button"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Enquire
+            </a>
           </div>
         ))}
         {filteredArtworks.length === 0 && (

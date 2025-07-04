@@ -39,8 +39,6 @@ export default function Gallery() {
 
   return (
     <div className="gallery-section">
-     
-
       <input
         type="text"
         placeholder="Search by title or tag..."
@@ -50,11 +48,11 @@ export default function Gallery() {
       />
 
       <div className="gallery-controls">
-        <div className="tag-filter">
+        <div className="gallery-tag-filter">
           {allTags.map(tag => (
             <button
               key={tag}
-              className={`tag-button ${filterTag === tag ? 'active' : ''}`}
+              className={`gallery-tag-button ${filterTag === tag ? 'active' : ''}`}
               onClick={() => setFilterTag(filterTag === tag ? '' : tag)}
             >
               {tag}
@@ -62,7 +60,7 @@ export default function Gallery() {
           ))}
           {filterTag && (
             <button
-              className="clear-filters"
+              className="gallery-clear-filters"
               onClick={() => setFilterTag('')}
             >
               Clear Filter
@@ -73,7 +71,7 @@ export default function Gallery() {
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value)}
-          className="sort-select"
+          className="gallery-sort-select"
         >
           <option value="">Sort by price</option>
           <option value="low">Low to High</option>
@@ -81,17 +79,17 @@ export default function Gallery() {
         </select>
       </div>
 
-      <div className="artwork-grid">
+      <div className="gallery-grid">
         {filteredArtworks.map(art => (
-          <div className="artwork-item" key={art.id}>
-            <img src={art.imageUrl} alt={art.title} className="artwork-image" />
-            <p className="artwork-price">${art.price.toFixed(2)}</p>            
-            <h3 className="artwork-title">{art.title}</h3>
-            <p className="artwork-tags">{art.tags?.join(', ')}</p>
+          <div className="gallery-artwork-item" key={art.id}>
+            <img src={art.imageUrl} alt={art.title} className="gallery-artwork-image" />
+            <p className="gallery-artwork-price">${art.price.toFixed(2)}</p>
+            <h3 className="gallery-artwork-title">{art.title}</h3>
+            <p className="gallery-artwork-tags">{art.tags?.join(', ')}</p>
           </div>
         ))}
         {filteredArtworks.length === 0 && (
-          <p className="no-results">No artworks found matching your criteria.</p>
+          <p className="gallery-no-results">No artworks found matching your criteria.</p>
         )}
       </div>
     </div>

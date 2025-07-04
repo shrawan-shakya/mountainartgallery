@@ -5,7 +5,7 @@ import { db } from '../firebase';
 import '../styles/PromoBar.css';
 
 const PROMO_KEY = 'promoDismissedUntil';
-const DISMISS_DURATION_MS = 24 * 60 * 60 * 1000; // 24 hours
+
 
 export default function PromoBar() {
   const [text, setText] = useState('');

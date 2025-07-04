@@ -8,7 +8,6 @@ import AdminLogin from './components/AdminLogin';
 import Dashboard from './components/Dashboard';
 import Navbar from './components/Navbar';
 import PromoBar from './components/PromoBar';
-
 import './App.css';
 
 function App() {

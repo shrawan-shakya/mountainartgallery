@@ -1,18 +1,19 @@
-// src/components/Dashboard.js
 import React, { useState, useEffect } from 'react';
 import { collection, addDoc, doc, getDoc, setDoc } from 'firebase/firestore';
-import { db } from '../firebase';
+import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
+import { db, storage } from '../firebase';
 import '../styles/Dashboard.css';
 
 export default function Dashboard() {
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [tags, setTags] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [imageFile, setImageFile] = useState(null);
   const [description, setDescription] = useState('');
   const [artist, setArtist] = useState('');
   const [dimensions, setDimensions] = useState('');
   const [medium, setMedium] = useState('');
+  const [uploadProgress, setUploadProgress] = useState(0);
 
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
@@ -28,38 +29,88 @@ export default function Dashboard() {
       }
     };
     loadPromo();
+
+    testStorageConnection();
   }, []);
+
+  const testStorageConnection = () => {
+    try {
+      const testRef = ref(storage, 'test-file.txt');
+      console.log('✅ Firebase Storage is working:', testRef);
+    } catch (error) {
+      console.error('❌ Firebase Storage error:', error);
+    }
+  };
 
   const handleUpload = async (e) => {
     e.preventDefault();
     setSuccess('');
     setError('');
 
-    try {
-      await addDoc(collection(db, 'artworks'), {
-        title,
-        price: parseFloat(price),
-        tags: tags.split(',').map(tag => tag.trim()),
-        imageUrl,
-        description,
-        artist,
-        dimensions,
-        medium,
-        createdAt: new Date()
-      });
+    if (!imageFile) {
+      setError('Please select an image file to upload.');
+      return;
+    }
 
-      setSuccess('Artwork uploaded successfully!');
-      setTitle('');
-      setPrice('');
-      setTags('');
-      setImageUrl('');
-      setDescription('');
-      setArtist('');
-      setDimensions('');
-      setMedium('');
+    if (!price || isNaN(parseFloat(price))) {
+      setError('Please enter a valid numeric price.');
+      return;
+    }
+
+    try {
+      const fileName = `${Date.now()}_${imageFile.name}`;
+      const storageRef = ref(storage, `artworks/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, imageFile);
+
+      uploadTask.on(
+        'state_changed',
+        (snapshot) => {
+          const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+          setUploadProgress(progress);
+        },
+        (uploadErr) => {
+          console.error('🔥 Upload failed during file transfer:', uploadErr.message);
+          setError('Image upload failed. Please try again.');
+        },
+        async () => {
+          const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+
+          const artworkData = {
+            title,
+            price: parseFloat(price),
+            tags: tags ? tags.split(',').map(tag => tag.trim()) : [],
+            imageUrl: downloadURL,
+            description,
+            artist,
+            dimensions,
+            medium,
+            createdAt: new Date()
+          };
+
+          console.log('✅ Saving artwork with data:', artworkData);
+
+          try {
+            await addDoc(collection(db, 'artworks'), artworkData);
+
+            setSuccess('Artwork uploaded successfully!');
+            setTitle('');
+            setPrice('');
+            setTags('');
+            setImageFile(null);
+            setDescription('');
+            setArtist('');
+            setDimensions('');
+            setMedium('');
+            setUploadProgress(0);
+          } catch (firestoreErr) {
+            console.error('🔥 Firestore save failed:', firestoreErr.message);
+            setError(`Failed to upload artwork: ${firestoreErr.message}`);
+          }
+        }
+      );
     } catch (err) {
-      console.error(err);
-      setError('Failed to upload artwork. Try again.');
+      console.error('🔥 Unexpected error during upload:', err.message);
+      setError(`Failed to upload artwork: ${err.message}`);
     }
   };
 
@@ -92,6 +143,9 @@ export default function Dashboard() {
 
         {success && <p className="success-message">{success}</p>}
         {error && <p className="error-message">{error}</p>}
+        {uploadProgress > 0 && uploadProgress < 100 && (
+          <p>Uploading Image: {Math.round(uploadProgress)}%</p>
+        )}
 
         <form onSubmit={handleUpload}>
           <input
@@ -139,10 +193,9 @@ export default function Dashboard() {
             <option value="Digital">Digital</option>
           </select>
           <input
-            type="text"
-            placeholder="Image URL"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
+            type="file"
+            accept="image/*"
+            onChange={(e) => setImageFile(e.target.files[0])}
             required
           />
           <textarea

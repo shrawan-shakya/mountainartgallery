@@ -1,0 +1,84 @@
+.artwork-detail-container {
+  display: flex;
+  max-width: 1000px;
+  margin: 40px auto;
+  gap: 40px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.artwork-detail-image-wrapper {
+  flex: 1 1 400px;
+}
+
+.artwork-detail-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  background: white;
+}
+
+.artwork-detail-info {
+  flex: 1 1 400px;
+  display: flex;
+  flex-direction: column;
+}
+
+.artwork-detail-title {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  color: #003d99;
+}
+
+.artwork-detail-artist,
+.artwork-detail-price,
+.artwork-detail-medium,
+.artwork-detail-dimensions,
+.artwork-detail-tags {
+  margin: 8px 0;
+  font-size: 1.1rem;
+  color: #444;
+}
+
+.artwork-detail-description {
+  margin: 20px 0;
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.4;
+  white-space: pre-line; /* preserves line breaks */
+}
+
+.artwork-detail-enquire-button {
+  align-self: flex-start;
+  padding: 12px 24px;
+  background-color: #0055cc;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+  border: none;
+  transition: background-color 0.3s ease;
+}
+
+.artwork-detail-enquire-button:hover {
+  background-color: #003d99;
+}
+
+@media (max-width: 768px) {
+  .artwork-detail-container {
+    flex-direction: column;
+    margin: 20px;
+  }
+
+  .artwork-detail-image-wrapper,
+  .artwork-detail-info {
+    flex: none;
+    width: 100%;
+  }
+
+  .artwork-detail-enquire-button {
+    width: 100%;
+    text-align: center;
+  }
+}

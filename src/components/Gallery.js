@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
+import { Link } from 'react-router-dom';
 import '../styles/Gallery.css';
 
 export default function Gallery() {
@@ -82,12 +83,14 @@ export default function Gallery() {
       <div className="gallery-grid">
         {filteredArtworks.map(art => (
           <div className="gallery-artwork-item" key={art.id}>
-            <img src={art.imageUrl} alt={art.title} className="gallery-artwork-image" />
+            <Link to={`/artwork/${art.id}`} className="gallery-artwork-link">
+              <img src={art.imageUrl} alt={art.title} className="gallery-artwork-image" />
+              <h3 className="gallery-artwork-title">{art.title}</h3>
+            </Link>
             <p className="gallery-artwork-price">${art.price.toFixed(2)}</p>
-            <h3 className="gallery-artwork-title">{art.title}</h3>
             <p className="gallery-artwork-tags">{art.tags?.join(', ')}</p>
             <a
-              href={`mailto:youremail@example.com?subject=Enquiry about artwork: ${encodeURIComponent(art.title)}`}
+              href={`mailto:mag.boudha@gmail.com?subject=Enquiry about artwork: ${encodeURIComponent(art.title)}`}
               className="enquire-button"
               target="_blank"
               rel="noopener noreferrer"

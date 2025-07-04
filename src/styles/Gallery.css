@@ -1,0 +1,143 @@
+.gallery-section {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.gallery-title {
+  text-align: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: #003d99;
+}
+
+.gallery-search {
+  display: block;
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 1.1rem;
+  border: 2px solid #ddd;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.gallery-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 30px;
+}
+
+.tag-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 1;
+}
+
+.tag-button {
+  background-color: #e6f0ff;
+  border: 1.5px solid #0055cc;
+  color: #0055cc;
+  padding: 8px 16px;
+  border-radius: 24px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  text-transform: capitalize; 
+}
+
+.tag-button:hover,
+.tag-button.active {
+  background-color: #0055cc;
+  color: white;
+}
+
+.clear-filters {
+  background-color: #ff6f61;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 24px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.clear-filters:hover {
+  background-color: #cc584a;
+}
+
+.sort-select {
+  padding: 10px 14px;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 2px solid #ddd;
+  min-width: 180px;
+}
+
+.artwork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 40px;
+  padding-top: 20px;
+}
+
+.artwork-item {
+  text-align: left;
+}
+
+.artwork-image {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  margin-bottom: 12px;
+  background: #fff;
+}
+
+.artwork-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #003d99;
+  margin-top: 8px;
+}
+
+.artwork-price {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+  margin-top: 6px;
+}
+
+.artwork-tags {
+  font-size: 0.85rem;
+  color: #777;
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 1.1rem;
+  color: #999;
+}
+
+@media (max-width: 768px) {
+  .gallery-controls {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sort-select {
+    width: 100%;
+  }
+
+  .tag-filter {
+    justify-content: center;
+  }
+}

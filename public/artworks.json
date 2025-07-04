@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "title": "Mountain Landscape",
+    "description": "Acrylic on canvas · 40x60cm",
+    "image": "/images/painting1.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Sunset Over Fields",
+    "description": "Oil on canvas · 50x70cm",
+    "image": "/images/painting2.jpg"
+  }
+]

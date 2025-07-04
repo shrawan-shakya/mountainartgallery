@@ -1,0 +1,41 @@
+.home-header {
+  padding: 5rem 0 3rem;
+  text-align: center;
+  color: var(--color-primary-dark);
+}
+
+.home-header h1 {
+  font-size: 2.8rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--spacing-md);
+}
+
+.home-header .subtitle {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.5;
+}
+
+.highlight-section {
+  background-color: var(--color-bg-alt);
+  padding: var(--spacing-xl) 0;
+  border-radius: var(--border-radius);
+  box-shadow: 0 12px 24px var(--color-shadow);
+  margin-bottom: var(--spacing-xl);
+}
+
+.highlight-section h2 {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+  font-size: 2rem;
+  color: var(--color-secondary);
+  letter-spacing: 0.04em;
+}
+
+.contact-section {
+  padding-bottom: var(--spacing-xl);
+}

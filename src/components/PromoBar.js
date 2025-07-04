@@ -5,7 +5,7 @@ import { db } from '../firebase';
 import '../styles/PromoBar.css';
 
 const PROMO_KEY = 'promoDismissedUntil';
-
+const DISMISS_DURATION_MS = 6 * 60 * 60 * 1000; // 6 hours
 
 export default function PromoBar() {
   const [text, setText] = useState('');
@@ -17,13 +17,15 @@ export default function PromoBar() {
         const now = Date.now();
         const dismissedUntil = parseInt(localStorage.getItem(PROMO_KEY), 10);
 
-        // Only show if promo wasn't dismissed or expired
         if (!dismissedUntil || now > dismissedUntil) {
           const docRef = doc(db, 'site-settings', 'promo');
           const snapshot = await getDoc(docRef);
           if (snapshot.exists()) {
-            setText(snapshot.data().text);
-            setVisible(true);
+            const promoText = snapshot.data().text; // 🔁 Make sure 'text' matches your field name in Firestore
+            if (promoText) {
+              setText(promoText);
+              setVisible(true);
+            }
           }
         }
       } catch (err) {
@@ -35,7 +37,7 @@ export default function PromoBar() {
   }, []);
 
   const handleDismiss = () => {
-    const until = Date.now() + 6000;
+    const until = Date.now() + DISMISS_DURATION_MS;
     localStorage.setItem(PROMO_KEY, until.toString());
     setVisible(false);
   };

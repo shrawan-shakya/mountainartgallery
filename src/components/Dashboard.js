@@ -5,6 +5,7 @@ import { db, storage } from '../firebase';
 import '../styles/Dashboard.css';
 
 export default function Dashboard() {
+  // Form states
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [tags, setTags] = useState('');
@@ -15,70 +16,67 @@ export default function Dashboard() {
   const [medium, setMedium] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
 
+  // Feedback states
   const [success, setSuccess] = useState('');
   const [error, setError] = useState('');
-
   const [promoText, setPromoText] = useState('');
 
   useEffect(() => {
+    // Load promo text once on mount
     const loadPromo = async () => {
       const promoRef = doc(db, 'site-settings', 'promo');
       const snap = await getDoc(promoRef);
-      if (snap.exists()) {
-        setPromoText(snap.data().text || '');
-      }
+      if (snap.exists()) setPromoText(snap.data().text || '');
     };
     loadPromo();
-
-    testStorageConnection();
   }, []);
-
-  const testStorageConnection = () => {
-    try {
-      const testRef = ref(storage, 'test-file.txt');
-      console.log('✅ Firebase Storage is working:', testRef);
-    } catch (error) {
-      console.error('❌ Firebase Storage error:', error);
-    }
-  };
 
   const handleUpload = async (e) => {
     e.preventDefault();
+
     setSuccess('');
     setError('');
+    setUploadProgress(0);
 
+    // Basic validation
     if (!imageFile) {
-      setError('Please select an image file to upload.');
+      setError('Please select an image file.');
       return;
     }
-
     if (!price || isNaN(parseFloat(price))) {
       setError('Please enter a valid numeric price.');
       return;
     }
 
     try {
+      // Prepare filename and storage ref
       const fileName = `${Date.now()}_${imageFile.name}`;
       const storageRef = ref(storage, `artworks/${fileName}`);
+
+      // Start upload
       const uploadTask = uploadBytesResumable(storageRef, imageFile);
 
-      uploadTask.on(
-        'state_changed',
+      // Listen for state changes, errors, completion
+      uploadTask.on('state_changed',
         (snapshot) => {
+          // Upload progress
           const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           setUploadProgress(progress);
         },
-        (uploadErr) => {
-          console.error('🔥 Upload failed during file transfer:', uploadErr.message);
+        (uploadError) => {
+          // Handle upload errors
+          console.error('Upload error:', uploadError);
           setError('Image upload failed. Please try again.');
         },
         async () => {
+          // Upload completed successfully, get download URL
           const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
 
+          // Prepare Firestore data object
           const artworkData = {
             title,
             price: parseFloat(price),
-            tags: tags ? tags.split(',').map(tag => tag.trim()) : [],
+            tags: tags ? tags.split(',').map(t => t.trim()) : [],
             imageUrl: downloadURL,
             description,
             artist,
@@ -87,12 +85,11 @@ export default function Dashboard() {
             createdAt: new Date()
           };
 
-          console.log('✅ Saving artwork with data:', artworkData);
-
+          // Save artwork document
           try {
             await addDoc(collection(db, 'artworks'), artworkData);
-
             setSuccess('Artwork uploaded successfully!');
+            // Clear form
             setTitle('');
             setPrice('');
             setTags('');
@@ -102,15 +99,16 @@ export default function Dashboard() {
             setDimensions('');
             setMedium('');
             setUploadProgress(0);
-          } catch (firestoreErr) {
-            console.error('🔥 Firestore save failed:', firestoreErr.message);
-            setError(`Failed to upload artwork: ${firestoreErr.message}`);
+          } catch (firestoreError) {
+            console.error('Firestore save error:', firestoreError);
+            setError('Failed to save artwork info. Please try again.');
           }
         }
       );
+
     } catch (err) {
-      console.error('🔥 Unexpected error during upload:', err.message);
-      setError(`Failed to upload artwork: ${err.message}`);
+      console.error('Unexpected error:', err);
+      setError('Unexpected error occurred. Please try again.');
     }
   };
 
@@ -119,7 +117,7 @@ export default function Dashboard() {
       await setDoc(doc(db, 'site-settings', 'promo'), { text: promoText });
       alert('Promotion text updated!');
     } catch (err) {
-      console.error(err);
+      console.error('Promo update error:', err);
       alert('Failed to update promotion text.');
     }
   };

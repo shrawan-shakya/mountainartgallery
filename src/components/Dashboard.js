@@ -18,6 +18,7 @@ import {
 } from 'firebase/storage';
 import { db, storage, auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
+import '../styles/Dashboard.css';
 
 export default function Dashboard() {
   // Form states
@@ -149,7 +150,10 @@ export default function Dashboard() {
         if (imageFile && artworks.find((a) => a.id === editId)?.imageUrl) {
           const oldUrl = artworks.find((a) => a.id === editId).imageUrl;
           try {
-            const oldRef = ref(storage, oldUrl.split('/o/')[1].split('?')[0].replace('%2F', '/'));
+            const oldRef = ref(
+              storage,
+              oldUrl.split('/o/')[1].split('?')[0].replace('%2F', '/')
+            );
             await deleteObject(oldRef);
           } catch (e) {
             console.warn('Old image deletion failed:', e);
@@ -200,6 +204,8 @@ export default function Dashboard() {
     setMedium(artwork.medium);
     setEditId(artwork.id);
     setImageFile(null); // clear file, upload optional on edit
+    setSuccess('');
+    setError('');
   };
 
   // Delete artwork and image
@@ -220,51 +226,56 @@ export default function Dashboard() {
       }
 
       // Remove from local list
-      setArtworks(arts => arts.filter(a => a.id !== id));
+      setArtworks((arts) => arts.filter((a) => a.id !== id));
       setSuccess('Artwork deleted successfully!');
+      setError('');
     } catch (err) {
       console.error('Delete failed:', err);
       setError('Failed to delete artwork.');
+      setSuccess('');
     }
   };
 
-  if (user === null) return <p>Loading auth...</p>;
-  if (!user) return <p>Please log in to access dashboard.</p>;
+  if (user === null) return <p>Loading authentication...</p>;
+  if (!user) return <p>Please log in to access the dashboard.</p>;
 
   return (
-    <div className="dashboard-wrapper" style={{ maxWidth: 900, margin: 'auto', padding: 20 }}>
+    <div className="dashboard-wrapper">
       <h2>Admin Dashboard</h2>
 
       {/* Promo Text Section */}
-      <section className="promo-editor" style={{ marginBottom: 40 }}>
+      <section className="promo-editor">
         <h3>Promotion Bar Text</h3>
         <textarea
           value={promoText}
           onChange={(e) => setPromoText(e.target.value)}
           placeholder="Enter promotional message..."
-          style={{ width: '100%', minHeight: 60, marginBottom: 10 }}
         />
-        <button onClick={async () => {
-          try {
-            await setDoc(doc(db, 'site-settings', 'promo'), { text: promoText });
-            alert('Promotion text updated!');
-          } catch {
-            alert('Failed to update promotion text.');
-          }
-        }}>Update Promo</button>
+        <button
+          onClick={async () => {
+            try {
+              await setDoc(doc(db, 'site-settings', 'promo'), { text: promoText });
+              alert('Promotion text updated!');
+            } catch {
+              alert('Failed to update promotion text.');
+            }
+          }}
+        >
+          Update Promo
+        </button>
       </section>
 
       {/* Upload/Edit Form */}
-      <section className="upload-form" style={{ marginBottom: 40 }}>
+      <section className="upload-form">
         <h3>{editId ? 'Edit Artwork' : 'Upload New Artwork'}</h3>
 
-        {success && <p style={{ color: 'green' }}>{success}</p>}
-        {error && <p style={{ color: 'red' }}>{error}</p>}
+        {success && <p className="success-message">{success}</p>}
+        {error && <p className="error-message">{error}</p>}
         {uploadProgress > 0 && uploadProgress < 100 && (
           <p>Uploading Image: {Math.round(uploadProgress)}%</p>
         )}
 
-        <form onSubmit={handleUpload} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+        <form onSubmit={handleUpload}>
           <input
             type="text"
             placeholder="Artwork Title"
@@ -324,56 +335,50 @@ export default function Dashboard() {
             rows="4"
           />
           <button type="submit">{editId ? 'Update Artwork' : 'Upload Artwork'}</button>
-          {editId && <button type="button" onClick={() => {
-            setEditId(null);
-            setTitle('');
-            setPrice('');
-            setTags('');
-            setImageFile(null);
-            setDescription('');
-            setArtist('');
-            setDimensions('');
-            setMedium('');
-            setSuccess('');
-            setError('');
-            setUploadProgress(0);
-          }}>Cancel Edit</button>}
+          {editId && (
+            <button
+              type="button"
+              onClick={() => {
+                setEditId(null);
+                setTitle('');
+                setPrice('');
+                setTags('');
+                setImageFile(null);
+                setDescription('');
+                setArtist('');
+                setDimensions('');
+                setMedium('');
+                setSuccess('');
+                setError('');
+                setUploadProgress(0);
+              }}
+            >
+              Cancel Edit
+            </button>
+          )}
         </form>
       </section>
 
       {/* Artworks List */}
-      <section className="artworks-list" style={{ marginBottom: 40 }}>
+      <section className="artworks-list">
         <h3>Existing Artworks</h3>
         {artworks.length === 0 && <p>No artworks found.</p>}
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 15 }}>
+        <div className="artwork-grid">
           {artworks.map((art) => (
-            <div key={art.id} style={{
-              border: '1px solid #ddd',
-              padding: 10,
-              width: 160,
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.1)'
-            }}>
+            <div key={art.id} className="artwork-card">
               <img
                 src={art.imageUrl}
                 alt={art.title}
-                style={{ width: '100%', height: 100, objectFit: 'cover', marginBottom: 10 }}
+                className="artwork-thumb"
               />
-              <strong style={{ fontSize: 14, marginBottom: 5 }}>{art.title}</strong>
-              <div style={{ fontSize: 12, color: '#555', marginBottom: 10 }}>
-                ${art.price.toFixed(2)}
-              </div>
-              <button
-                onClick={() => startEdit(art)}
-                style={{ marginBottom: 5, padding: '5px 10px', cursor: 'pointer' }}
-              >
+              <strong className="artwork-title">{art.title}</strong>
+              <div className="artwork-price">${art.price.toFixed(2)}</div>
+              <button className="edit-btn" onClick={() => startEdit(art)}>
                 Edit
               </button>
               <button
+                className="delete-btn"
                 onClick={() => handleDelete(art.id, art.imageUrl)}
-                style={{ padding: '5px 10px', cursor: 'pointer', backgroundColor: '#d33', color: '#fff', border: 'none' }}
               >
                 Delete
               </button>

@@ -20,33 +20,28 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <>
-      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-        <div className="navbar-container">
-          <Link to="/" className="navbar-logo" onClick={closeMenu}>
-            <img src={logo} alt="Mountain Art Gallery Logo" />
-          </Link>
+    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+      <div className="navbar-container">
+        <Link to="/" className="navbar-logo" onClick={closeMenu}>
+          <img src={logo} alt="Mountain Art Gallery Logo" />
+        </Link>
 
-          <div
-            className={`hamburger ${menuOpen ? 'open' : ''}`}
-            onClick={toggleMenu}
-          >
-            <span className="bar bar1"></span>
-            <span className="bar bar2"></span>
-            <span className="bar bar3"></span>
-          </div>
-
-          <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-            <li><Link to="/gallery" onClick={closeMenu}>Shop</Link></li>
-            <li><Link to="/how-to-buy" onClick={closeMenu}>How to Buy</Link></li>
-            <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
-            <li><Link to="/login" onClick={closeMenu}>Admin Login</Link></li>
-          </ul>
+        <div
+          className={`hamburger ${menuOpen ? 'open' : ''}`}
+          onClick={toggleMenu}
+        >
+          <span className="bar bar1"></span>
+          <span className="bar bar2"></span>
+          <span className="bar bar3"></span>
         </div>
-      </nav>
 
-      {/* Overlay when mobile menu is open */}
-      {menuOpen && <div className="mobile-overlay active" onClick={closeMenu}></div>}
-    </>
+        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+          <li><Link to="/gallery" onClick={closeMenu}>Shop</Link></li>
+          <li><Link to="/how-to-buy" onClick={closeMenu}>How to Buy</Link></li>
+          <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
+          <li><Link to="/login" onClick={closeMenu}>Admin Login</Link></li>
+        </ul>
+      </div>
+    </nav>
   );
 }

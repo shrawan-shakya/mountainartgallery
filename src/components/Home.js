@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <>
       <header className="home-header container">
-        <h1>Discover the Beauty of Mountains</h1>
+        <h1>Discover the Beauty of Nepalese Art.</h1>
         <p className="subtitle">
           Explore breathtaking paintings by local artists at Mountain Art Gallery.
         </p>

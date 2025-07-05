@@ -5,14 +5,28 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+/* Framed Search Bar */
 .gallery-search {
   display: block;
   width: 100%;
-  padding: 12px 16px;
+  padding: 14px 18px;
   font-size: 1.1rem;
-  border: 2px solid #ddd;
-  border-radius: 6px;
+  border: 6px solid #fff;
+  box-shadow:
+    inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
+    0 4px 8px rgba(0, 0, 0, 0.12);
+  border-radius: 0;
+  background-color: #fdfdfd;
   margin-bottom: 24px;
+  outline: none;
+  transition: box-shadow 0.3s ease;
+  font-family: inherit;
+}
+
+.gallery-search:focus {
+  box-shadow:
+    inset 0 0 10px 3px rgba(0, 0, 0, 0.15),
+    0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-controls {
@@ -31,36 +45,50 @@
   flex: 1;
 }
 
+/* Filter buttons - styled like labels */
 .gallery-tag-button {
-  background-color: #e6f0ff;
-  border: 1.5px solid #0055cc;
-  color: #0055cc;
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+  color: #111;
   padding: 8px 16px;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 0;
+  box-shadow:
+    inset 0 0 6px rgba(0, 0, 0, 0.08),
+    0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  transition: all 0.3s ease;
   text-transform: capitalize;
 }
 
 .gallery-tag-button:hover,
 .gallery-tag-button.active {
-  background-color: #0055cc;
-  color: white;
+  background-color: #111;
+  color: #fff;
 }
 
+/* Clear Filter - Styled to match active buttons */
 .gallery-clear-filters {
-  background-color: #ff6f61;
-  border: none;
-  color: white;
-  padding: 8px 18px;
-  border-radius: 24px;
-  cursor: pointer;
-  font-weight: 600;
+  background-color: #fdfdfd;
+  border: 1px solid #ccc;
+  color: #111;
+  padding: 8px 16px;
   font-size: 0.9rem;
+  cursor: pointer;
+  border-radius: 0;
+  box-shadow:
+    inset 0 0 6px rgba(0, 0, 0, 0.08),
+    0 2px 5px rgba(0, 0, 0, 0.1);
+  font-family: inherit;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: capitalize;
 }
 
 .gallery-clear-filters:hover {
-  background-color: #cc584a;
+  background-color: #111;
+  color: #fff;
 }
 
 .gallery-sort-select {
@@ -70,7 +98,6 @@
   min-width: 180px;
 }
 
-/* Masonry layout using CSS columns */
 .gallery-grid {
   column-count: 3;
   column-gap: 40px;
@@ -79,115 +106,88 @@
 
 .gallery-artwork-item {
   break-inside: avoid;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
   display: inline-block;
   width: 100%;
   background: #fff;
-  padding: 16px;
   position: relative;
+  padding: 0;
 }
 
-/* Frame styles applied to image wrapper */
+/* Framed Image Wrapper */
 .gallery-artwork-image-wrapper {
   border: 6px solid #fff;
   box-shadow:
     inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
     0 8px 16px rgba(0, 0, 0, 0.25);
-  position: relative;
-  padding: 12px; /* Padding so image doesn’t touch frame */
+  padding: 12px;
   box-sizing: border-box;
+  background: #fdfdfd;
+  margin-bottom: 5px;
 }
 
-.gallery-artwork-image-wrapper::before {
-  content: "";
-  position: absolute;
-  top: 6px;
-  left: 6px;
-  right: 6px;
-  bottom: 6px;
-  border: 2px solid rgba(255, 255, 255, 0.65);
-  pointer-events: none;
-  box-shadow: inset 0 0 6px 2px rgba(0, 0, 0, 0.07);
-}
-
-/* Remove roundness from images */
 .gallery-artwork-image {
   width: 100%;
   height: auto;
   object-fit: contain;
   border-radius: 0;
-  margin-bottom: 8px;
   display: block;
 }
 
-/* Remove underline and style links */
-.gallery-artwork-link {
-  text-decoration: none;
-  color: inherit; /* inherit color from children */
-  display: block;
-}
-
-/* Add subtle hover effect on artwork title */
-.gallery-artwork-link:hover .gallery-artwork-title {
-  color: #002366; /* a slightly darker blue */
-  text-decoration: underline;
-  cursor: pointer;
-}
-
-/* Artwork title */
-.gallery-artwork-title {
-  font-size: 1.3rem;
-  font-weight: 700;
-  color: #0055cc;
-  margin: 12px 0 6px;
-  line-height: 1.2;
-  letter-spacing: 0.02em;
-  transition: color 0.3s ease;
-}
-
-/* Info row: artist name + enquire button */
-.gallery-artwork-info-row {
+/* Artwork Label Section */
+.gallery-info-label {
+  background-color: #f1f1f1;
+  padding: 14px 16px;
+  border: 1px solid #ccc;
+  border-top: none;
+  font-family: inherit;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin: 8px 0 12px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-/* Artist name */
+.gallery-info-text {
+  flex: 1;
+  min-width: 0;
+}
+
 .gallery-artwork-artist {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0;
+  font-style: italic;
+}
+
+.gallery-artwork-title {
   font-size: 1rem;
-  font-weight: 500;
-  color: #666;
-  font-style: normal;
-  letter-spacing: 0.01em;
+  font-weight: 600;
+  color: #111;
+  margin-top: 5px;
+  margin-bottom: 0;
+  line-height: 1.3;
+}
+
+.gallery-artwork-price {
+  font-size: 0.95rem;
+  color: #333;
+  font-weight: 600;
+  white-space: nowrap;
   margin: 0;
 }
 
-/* Enquire button as icon only */
-.enquire-button {
-  background-color: transparent;
-  border: none;
-  color: #0073e6;
-  cursor: pointer;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.3s ease, transform 0.2s ease;
-  border-radius: 4px;
+.gallery-artwork-size {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+  margin-bottom: 0;
 }
 
-.enquire-button svg {
-  width: 20px;
-  height: 20px;
-  stroke-width: 2;
-}
-
-.enquire-button:hover,
-.enquire-button:focus {
-  color: #005bb5;
-  transform: scale(1.1);
-  outline: none;
+.gallery-artwork-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
 }
 
 .gallery-no-results {
@@ -213,5 +213,14 @@
 
   .gallery-grid {
     column-count: 1;
+  }
+
+  .gallery-info-label {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .gallery-artwork-price {
+    margin-top: 6px;
   }
 }

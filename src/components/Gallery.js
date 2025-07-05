@@ -4,27 +4,6 @@ import { db } from '../firebase';
 import { Link } from 'react-router-dom';
 import '../styles/Gallery.css';
 
-// SVG message icon component
-function MessageIcon() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      viewBox="0 0 24 24"
-      width="20"
-      height="20"
-      aria-hidden="true"
-      focusable="false"
-    >
-      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2z" />
-    </svg>
-  );
-}
-
 export default function Gallery() {
   const [artworks, setArtworks] = useState([]);
   const [search, setSearch] = useState('');
@@ -112,24 +91,14 @@ export default function Gallery() {
                   className="gallery-artwork-image"
                 />
               </div>
-            </Link>
-
-            <div className="gallery-artwork-info-row">
-              <p className="gallery-artwork-artist">{art.artist || 'Unknown Artist'}</p>
-              <a
-                href={`mailto:mag.boudha@gmail.com?subject=Enquiry about artwork: ${encodeURIComponent(art.title)}`}
-                className="enquire-button"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`Enquire about ${art.title}`}
-                title="Enquire"
-              >
-                <MessageIcon />
-              </a>
-            </div>
-
-            <Link to={`/artwork/${art.id}`} className="gallery-artwork-link">
-              <h3 className="gallery-artwork-title">{art.title}</h3>
+              <div className="gallery-info-label">
+                <div className="gallery-info-text">
+                  <p className="gallery-artwork-artist">{art.artist || 'Unknown Artist'}</p>
+                  <h3 className="gallery-artwork-title">{art.title}</h3>
+                  <p className="gallery-artwork-size">{art.dimensions || 'Size unknown'}</p>
+                </div>
+                <p className="gallery-artwork-price">${art.price?.toFixed(2)}</p>
+              </div>
             </Link>
           </div>
         ))}

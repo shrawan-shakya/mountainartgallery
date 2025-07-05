@@ -1,3 +1,4 @@
+// components/Navbar.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -20,24 +21,37 @@ export default function Navbar() {
   const closeMenu = () => setMenuOpen(false);
 
   return (
-    <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
-      <div className="navbar-container">
-        <Link to="/" className="navbar-logo" onClick={closeMenu}>
-          <img src={logo} alt="Mountain Art Gallery Logo" />
-        </Link>
+    <>
+      <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
+        <div className="navbar-container">
+          <Link to="/" className="navbar-logo" onClick={closeMenu}>
+            <img src={logo} alt="Mountain Art Gallery Logo" />
+          </Link>
 
-        <div className="hamburger" onClick={toggleMenu}>
-          <span className={menuOpen ? 'bar open' : 'bar'}></span>
-          <span className={menuOpen ? 'bar open' : 'bar'}></span>
-          <span className={menuOpen ? 'bar open' : 'bar'}></span>
+          <div
+            className={`hamburger ${menuOpen ? 'open' : ''}`}
+            onClick={toggleMenu}
+          >
+            <span className="bar bar1"></span>
+            <span className="bar bar2"></span>
+            <span className="bar bar3"></span>
+          </div>
+
+          <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
+            <li>
+              <Link to="/gallery" onClick={closeMenu}>Shop</Link>
+            </li>
+            <li>
+              <a href="#contact" onClick={closeMenu}>Contact</a>
+            </li>
+            <li>
+              <Link to="/login" onClick={closeMenu}>Admin Login</Link>
+            </li>
+          </ul>
         </div>
+      </nav>
 
-        <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-          <li><a href="#gallery" onClick={closeMenu}>Gallery</a></li>
-          <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
-          <li><Link to="/login" onClick={closeMenu}>Admin Login</Link></li>
-        </ul>
-      </div>
-    </nav>
+      {menuOpen && <div className="mobile-overlay" onClick={closeMenu}></div>}
+    </>
   );
 }

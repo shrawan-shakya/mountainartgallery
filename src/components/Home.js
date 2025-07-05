@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Gallery from './Gallery';
 import ContactForm from './ContactForm';
 import '../styles/Home.css';
@@ -11,10 +12,10 @@ export default function Home() {
         <p className="subtitle">
           Explore breathtaking paintings by local artists at Mountain Art Gallery.
         </p>
+        <Link to="/gallery" className="explore-button">Shop Gallery</Link>
       </header>
 
       <section className="highlight-section container">
-        {/* <h2>Featured Collection</h2> */}
         <Gallery />
       </section>
 

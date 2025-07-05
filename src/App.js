@@ -1,12 +1,14 @@
+// App.js
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { auth } from './firebase';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
 
-import Home from './components/Home'; // ✅ Used below now
+import Home from './components/Home';
+import GalleryPage from './components/GalleryPage';
 import AdminLogin from './components/AdminLogin';
 import Dashboard from './components/Dashboard';
-import ArtworkDetail from './components/ArtworkDetail'; // If using detailed artwork pages
+import ArtworkDetail from './components/ArtworkDetail';
 import Navbar from './components/Navbar';
 import PromoBar from './components/PromoBar';
 import './App.css';
@@ -32,16 +34,10 @@ function App() {
         <Navbar />
         <div className="container">
           <Routes>
-            {/* ✅ Home is now being used */}
             <Route path="/" element={<Home />} />
-
-            {/* Artwork detail page */}
+            <Route path="/gallery" element={<GalleryPage />} />
             <Route path="/artwork/:id" element={<ArtworkDetail />} />
-
-            {/* Admin login */}
             <Route path="/login" element={<AdminLogin />} />
-
-            {/* Protected dashboard */}
             <Route
               path="/dashboard"
               element={

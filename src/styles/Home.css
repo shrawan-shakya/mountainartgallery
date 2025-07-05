@@ -16,15 +16,39 @@
   font-weight: 500;
   color: var(--color-text-secondary);
   max-width: 600px;
-  margin: 0 auto;
+  margin: 2rem auto 1.5rem;
   line-height: 1.5;
+}
+
+/* Explore Gallery Button with Gradient, no border radius */
+.explore-button {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 12px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  transition: background-position 0.5s ease, color 0.3s ease;
+  background-size: 300% 100%;
+  background-position: 0% 0%;
+}
+
+.explore-button:hover {
+  background-position: 100% 0%;
+  color: #fff;
+  cursor: pointer;
 }
 
 .highlight-section {
   background-color: var(--color-bg-alt);
   padding: var(--spacing-xl) 0;
   border-radius: var(--border-radius);
-  box-shadow: 0 12px 24px var(--color-shadow);
   margin-bottom: var(--spacing-xl);
 }
 
@@ -38,4 +62,25 @@
 
 .contact-section {
   padding-bottom: var(--spacing-xl);
+}
+
+/* ======= Responsive: Adjust Hero Section for Mobile ======= */
+@media (max-width: 768px) {
+  .home-header {
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .home-header h1 {
+    font-size: 2rem;
+  }
+
+  .home-header .subtitle {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+  }
+
+  .explore-button {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+  }
 }

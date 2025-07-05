@@ -7,8 +7,9 @@ import '../styles/Gallery.css';
 export default function Gallery() {
   const [artworks, setArtworks] = useState([]);
   const [search, setSearch] = useState('');
+  const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+  const [mediumFilter, setMediumFilter] = useState('');
   const [sort, setSort] = useState('');
-  const [filterTag, setFilterTag] = useState('');
 
   useEffect(() => {
     const fetchArtworks = async () => {
@@ -24,50 +25,85 @@ export default function Gallery() {
     fetchArtworks();
   }, []);
 
-  const allTags = [...new Set(artworks.flatMap(art => art.tags || []))];
+  const allMediums = [...new Set(artworks.map(art => art.medium).filter(Boolean))];
 
   const filteredArtworks = artworks
-    .filter(art =>
-      art.title?.toLowerCase().includes(search.toLowerCase()) ||
-      art.tags?.join(',').toLowerCase().includes(search.toLowerCase())
-    )
-    .filter(art => !filterTag || (art.tags || []).includes(filterTag))
+    .filter(art => {
+      const searchLower = search.toLowerCase();
+      const inTitle = art.title?.toLowerCase().includes(searchLower);
+      const inTags = (art.tags || []).some(tag => tag.toLowerCase().includes(searchLower));
+      return search === '' || inTitle || inTags;
+    })
+    .filter(art => {
+      if (!mediumFilter) return true;
+      return art.medium === mediumFilter;
+    })
+    .filter(art => {
+      const price = Number(art.price);
+      const min = Number(priceRange.min);
+      const max = Number(priceRange.max);
+      if (priceRange.min !== '' && price < min) return false;
+      if (priceRange.max !== '' && price > max) return false;
+      return true;
+    })
     .sort((a, b) => {
       if (sort === 'low') return a.price - b.price;
       if (sort === 'high') return b.price - a.price;
       return 0;
     });
 
+  const clearFilters = () => {
+    setSearch('');
+    setPriceRange({ min: '', max: '' });
+    setMediumFilter('');
+    setSort('');
+  };
+
   return (
     <div className="gallery-section">
-      <input
-        type="text"
-        placeholder="Search by title or tag..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-        className="gallery-search"
-      />
+      <h2 className="gallery-section-title">Explore Our Collection</h2>
 
       <div className="gallery-controls">
-        <div className="gallery-tag-filter">
-          {allTags.map(tag => (
-            <button
-              key={tag}
-              className={`gallery-tag-button ${filterTag === tag ? 'active' : ''}`}
-              onClick={() => setFilterTag(filterTag === tag ? '' : tag)}
-            >
-              {tag}
-            </button>
+        <input
+          type="text"
+          placeholder="Search by title or tag..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="gallery-search"
+        />
+
+        <label className="gallery-price-label" data-label="Min Price">
+          <input
+            type="number"
+            min="0"
+            value={priceRange.min}
+            onChange={e => setPriceRange(prev => ({ ...prev, min: e.target.value }))}
+            className="gallery-price-input"
+            placeholder="0"
+          />
+        </label>
+
+        <label className="gallery-price-label" data-label="Max Price">
+          <input
+            type="number"
+            min="0"
+            value={priceRange.max}
+            onChange={e => setPriceRange(prev => ({ ...prev, max: e.target.value }))}
+            className="gallery-price-input"
+            placeholder="No max"
+          />
+        </label>
+
+        <select
+          value={mediumFilter}
+          onChange={e => setMediumFilter(e.target.value)}
+          className="gallery-sort-select"
+        >
+          <option value="">All Mediums</option>
+          {allMediums.map(med => (
+            <option key={med} value={med}>{med}</option>
           ))}
-          {filterTag && (
-            <button
-              className="gallery-clear-filters"
-              onClick={() => setFilterTag('')}
-            >
-              Clear Filter
-            </button>
-          )}
-        </div>
+        </select>
 
         <select
           value={sort}
@@ -78,34 +114,40 @@ export default function Gallery() {
           <option value="low">Low to High</option>
           <option value="high">High to Low</option>
         </select>
+
+        <button
+          className="gallery-clear-filters"
+          onClick={clearFilters}
+        >
+          Clear Filters
+        </button>
       </div>
 
-      <div className="gallery-grid">
-        {filteredArtworks.map(art => (
-          <div className="gallery-artwork-item" key={art.id}>
-            <Link to={`/artwork/${art.id}`} className="gallery-artwork-link">
-              <div className="gallery-artwork-image-wrapper">
-                <img
-                  src={art.imageUrl}
-                  alt={art.title}
-                  className="gallery-artwork-image"
-                />
-              </div>
-              <div className="gallery-info-label">
-                <div className="gallery-info-text">
-                  <p className="gallery-artwork-artist">{art.artist || 'Unknown Artist'}</p>
-                  <h3 className="gallery-artwork-title">{art.title}</h3>
-                  <p className="gallery-artwork-size">{art.dimensions || 'Size unknown'}</p>
-                </div>
-                <p className="gallery-artwork-price">${art.price?.toFixed(2)}</p>
-              </div>
-            </Link>
-          </div>
-        ))}
-        {filteredArtworks.length === 0 && (
+      {filteredArtworks.length === 0 ? (
+        <div className="gallery-empty">
           <p className="gallery-no-results">No artworks found matching your criteria.</p>
-        )}
-      </div>
+        </div>
+      ) : (
+        <div className="gallery-grid">
+          {filteredArtworks.map(art => (
+            <div className="gallery-artwork-item" key={art.id}>
+              <Link to={`/artwork/${art.id}`} className="gallery-artwork-link">
+                <div className="gallery-artwork-image-wrapper">
+                  <img src={art.imageUrl} alt={art.title} className="gallery-artwork-image" />
+                </div>
+                <div className="gallery-info-label">
+                  <div className="gallery-info-text">
+                    <p className="gallery-artwork-artist">{art.artist || 'Unknown Artist'}</p>
+                    <h3 className="gallery-artwork-title">{art.title}</h3>
+                    <p className="gallery-artwork-size">{art.dimensions || 'Size unknown'}</p>
+                  </div>
+                  <p className="gallery-artwork-price">${art.price?.toFixed(2)}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

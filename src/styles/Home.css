@@ -54,7 +54,6 @@
 
 .highlight-section h2 {
   text-align: center;
-  margin-bottom: var(--spacing-lg);
   font-size: 2rem;
   color: var(--color-secondary);
   letter-spacing: 0.04em;

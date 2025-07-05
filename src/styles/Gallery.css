@@ -5,99 +5,117 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-/* Framed Search Bar */
-.gallery-search {
-  display: block;
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 1.1rem;
-  border: 6px solid #fff;
-  box-shadow:
-    inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
-    0 4px 8px rgba(0, 0, 0, 0.12);
-  border-radius: 0;
-  background-color: #fdfdfd;
-  margin-bottom: 24px;
-  outline: none;
-  transition: box-shadow 0.3s ease;
-  font-family: inherit;
+.gallery-section-title {
+  text-align: center;
+  margin: 50px 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #111;
 }
 
-.gallery-search:focus {
-  box-shadow:
-    inset 0 0 10px 3px rgba(0, 0, 0, 0.15),
-    0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
+/* Controls container */
 .gallery-controls {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 12px;
   flex-wrap: wrap;
-  gap: 16px;
   margin-bottom: 30px;
 }
 
-.gallery-tag-filter {
+/* Search */
+.gallery-search {
+  flex: 1 1 220px;
+  padding: 8px 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
+  outline: none;
+  height: 36px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.gallery-search:focus {
+  border-color: #111;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+/* Price labels */
+.gallery-price-label {
   display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  flex: 1;
-}
-
-/* Filter buttons - styled like labels */
-.gallery-tag-button {
-  background-color: #fdfdfd;
-  border: 1px solid #ccc;
-  color: #111;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 0;
-  box-shadow:
-    inset 0 0 6px rgba(0, 0, 0, 0.08),
-    0 2px 5px rgba(0, 0, 0, 0.1);
-  font-family: inherit;
-  transition: all 0.3s ease;
-  text-transform: capitalize;
-}
-
-.gallery-tag-button:hover,
-.gallery-tag-button.active {
-  background-color: #111;
-  color: #fff;
-}
-
-/* Clear Filter - Styled to match active buttons */
-.gallery-clear-filters {
-  background-color: #fdfdfd;
-  border: 1px solid #ccc;
-  color: #111;
-  padding: 8px 16px;
-  font-size: 0.9rem;
-  cursor: pointer;
-  border-radius: 0;
-  box-shadow:
-    inset 0 0 6px rgba(0, 0, 0, 0.08),
-    0 2px 5px rgba(0, 0, 0, 0.1);
-  font-family: inherit;
+  align-items: center;
+  font-size: 0.85rem;
+  color: #444;
   font-weight: 600;
+  gap: 6px;
+  min-width: 130px;
+}
+
+.gallery-price-label::before {
+  content: attr(data-label);
+  min-width: 60px;
+}
+
+/* Price inputs */
+.gallery-price-input {
+  height: 36px;
+  padding: 4px 8px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  flex: 1;
+  min-width: 60px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.gallery-price-input:focus {
+  border-color: #111;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+/* Dropdowns */
+.gallery-sort-select {
+  height: 36px;
+  padding: 0 12px;
+  font-size: 1rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  min-width: 140px;
+  cursor: pointer;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.gallery-sort-select:focus {
+  border-color: #111;
+  box-shadow: 0 0 5px rgba(0,0,0,0.15);
+}
+
+/* Clear button */
+.gallery-clear-filters {
+  height: 36px;
+  padding: 0 14px;
+  font-size: 0.9rem;
+  border: 1.5px solid #ccc;
+  border-radius: 4px;
+  background-color: #fdfdfd;
+  color: #111;
+  font-weight: 600;
+  cursor: pointer;
   transition: all 0.3s ease;
-  text-transform: capitalize;
+  white-space: nowrap;
 }
 
 .gallery-clear-filters:hover {
   background-color: #111;
   color: #fff;
+  border-color: #111;
+  box-shadow: 0 0 5px rgba(0,0,0,0.3);
 }
 
-.gallery-sort-select {
-  padding: 10px 14px;
-  font-size: 1rem;
-  border: 2px solid #ddd;
-  min-width: 180px;
-}
-
+/* Gallery grid */
 .gallery-grid {
   column-count: 3;
   column-gap: 40px;
@@ -110,18 +128,13 @@
   display: inline-block;
   width: 100%;
   background: #fff;
-  position: relative;
-  padding: 0;
 }
 
-/* Framed Image Wrapper */
 .gallery-artwork-image-wrapper {
   border: 6px solid #fff;
-  box-shadow:
-    inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
-    0 8px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
+              0 8px 16px rgba(0, 0, 0, 0.25);
   padding: 12px;
-  box-sizing: border-box;
   background: #fdfdfd;
   margin-bottom: 5px;
 }
@@ -130,27 +143,21 @@
   width: 100%;
   height: auto;
   object-fit: contain;
-  border-radius: 0;
-  display: block;
 }
 
-/* Artwork Label Section */
 .gallery-info-label {
   background-color: #f1f1f1;
   padding: 14px 16px;
   border: 1px solid #ccc;
   border-top: none;
-  font-family: inherit;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .gallery-info-text {
   flex: 1;
-  min-width: 0;
 }
 
 .gallery-artwork-artist {
@@ -166,7 +173,13 @@
   color: #111;
   margin-top: 5px;
   margin-bottom: 0;
-  line-height: 1.3;
+}
+
+.gallery-artwork-size {
+  font-size: 0.85rem;
+  color: #666;
+  margin-top: 4px;
+  margin-bottom: 0;
 }
 
 .gallery-artwork-price {
@@ -177,50 +190,42 @@
   margin: 0;
 }
 
-.gallery-artwork-size {
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 4px;
-  margin-bottom: 0;
-}
-
 .gallery-artwork-link {
   text-decoration: none;
   color: inherit;
   display: block;
 }
 
-.gallery-no-results {
-  grid-column: 1 / -1;
-  text-align: center;
-  font-size: 1.1rem;
-  color: #999;
+/* Centered "No results" */
+.gallery-empty {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
 }
 
+.gallery-no-results {
+  font-size: 1.1rem;
+  color: #999;
+  text-align: center;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .gallery-controls {
     flex-direction: column;
     align-items: stretch;
   }
 
-  .gallery-sort-select {
+  .gallery-search,
+  .gallery-price-label,
+  .gallery-price-input,
+  .gallery-sort-select,
+  .gallery-clear-filters {
     width: 100%;
-  }
-
-  .gallery-tag-filter {
-    justify-content: center;
   }
 
   .gallery-grid {
     column-count: 1;
-  }
-
-  .gallery-info-label {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .gallery-artwork-price {
-    margin-top: 6px;
   }
 }

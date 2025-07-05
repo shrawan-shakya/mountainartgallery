@@ -3,38 +3,41 @@ import '../styles/HowToBuy.css';
 
 export default function HowToBuy() {
   return (
-    <div className="how-to-buy-container">
-      <h1>How to Buy Artwork</h1>
-      
-      <section className="step">
-        <h2>1. Browse Our Collection</h2>
-        <p>Explore our wide selection of mountain paintings created by local artists. Visit the <a href="/gallery">All Paintings</a> page to see details and images.</p>
-      </section>
+    <div className="how-to-buy container">
+      <h1>How to Buy Art from Mountain Art Gallery</h1>
+      <p className="intro">
+        We’ve made purchasing artwork simple and personal. Follow these steps to inquire about a painting and make it yours.
+      </p>
 
-      <section className="step">
-        <h2>2. Select Your Favorite Artwork</h2>
-        <p>Click on any painting to view more details including artist information, size, and price.</p>
-      </section>
+      <div className="steps">
+        <div className="step">
+          <div className="step-icon">🖼️</div>
+          <h3>1. Browse the Collection</h3>
+          <p>Explore our curated selection of original artworks by talented mountain artists on the <strong>Shop</strong> page.</p>
+        </div>
 
-      <section className="step">
-        <h2>3. Enquire About the Artwork</h2>
-        <p>On the artwork detail page, click the <strong>Enquire</strong> button. This will open your email client with a pre-filled subject so you can ask questions or express your interest directly to us.</p>
-      </section>
+        <div className="step">
+          <div className="step-icon">📩</div>
+          <h3>2. Make an Enquiry</h3>
+          <p>Click on the <strong>Enquire</strong> button on the painting you love. This opens your email with all details pre-filled.</p>
+        </div>
 
-      <section className="step">
-        <h2>4. Await Our Response</h2>
-        <p>We’ll reply promptly with availability, payment options, and any additional information you need to complete your purchase.</p>
-      </section>
+        <div className="step">
+          <div className="step-icon">💬</div>
+          <h3>3. Get a Response</h3>
+          <p>We’ll reply via email with availability, price confirmation, shipping options, and any questions you may have.</p>
+        </div>
 
-      <section className="step">
-        <h2>5. Complete Your Purchase</h2>
-        <p>Once everything is confirmed, we will provide secure payment instructions and arrange delivery or pickup of your artwork.</p>
-      </section>
+        <div className="step">
+          <div className="step-icon">✅</div>
+          <h3>4. Finalize Purchase</h3>
+          <p>Once confirmed, we arrange payment and shipping securely. Your new artwork will be packed with care and shipped to your doorstep.</p>
+        </div>
+      </div>
 
-      <section className="contact-info">
-        <h2>Need Help?</h2>
-        <p>If you have any questions, feel free to <a href="#contact">contact us</a> anytime.</p>
-      </section>
+      <p className="closing-note">
+        Need help? <a href="#contact">Contact us</a> anytime for guidance or special requests.
+      </p>
     </div>
   );
 }

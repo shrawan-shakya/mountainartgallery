@@ -1,79 +1,100 @@
-.how-to-buy-container {
-  max-width: 700px;
-  margin: 3rem auto;
-  padding: 0 20px;
+.how-to-buy {
+  padding: 4rem 1.5rem 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: #222;
+  text-align: center;
 }
 
-.how-to-buy-container h1 {
-  font-size: 2.4rem;
-  font-weight: 900;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: var(--color-primary-dark);
+.how-to-buy h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: #111;
+}
+
+.how-to-buy .intro {
+  font-size: 1.1rem;
+  color: #444;
+  margin-bottom: 3rem;
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.steps {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .step {
-  margin-bottom: 2rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  max-width: 700px;
+  text-align: left;
+  transition: transform 0.3s ease;
 }
 
-.step h2 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-  color: var(--color-secondary);
+.step:hover {
+  transform: translateY(-4px);
 }
 
-.step p {
-  font-size: 1rem;
-  line-height: 1.5;
-  color: #444;
+.step-icon {
+  font-size: 2rem;
+  margin-bottom: 1rem;
 }
 
-.step a {
-  color: #3b82f6;
-  text-decoration: underline;
-}
-
-.step a:hover {
-  color: #8b5cf6;
-  text-decoration: none;
-}
-
-.contact-info {
-  margin-top: 3rem;
-  padding-top: 1rem;
-  border-top: 1px solid #ccc;
-  text-align: center;
-}
-
-.contact-info h2 {
-  font-weight: 700;
+.step h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
-.contact-info a {
-  color: #ec4899;
-  text-decoration: underline;
+.step p {
+  color: #555;
+  line-height: 1.6;
+  font-size: 0.95rem;
 }
 
-.contact-info a:hover {
-  color: #c026d3;
+.closing-note {
+  margin-top: 3rem;
+  font-size: 1rem;
+  color: #444;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.closing-note a {
+  color: #0055cc;
+  font-weight: 600;
   text-decoration: none;
 }
 
-/* Responsive */
+.closing-note a:hover {
+  text-decoration: underline;
+}
+
+/* Mobile styles */
 @media (max-width: 600px) {
-  .how-to-buy-container {
-    padding: 0 15px;
+  .how-to-buy {
+    padding: 2.5rem 1rem;
   }
 
-  .how-to-buy-container h1 {
-    font-size: 2rem;
+  .how-to-buy h1 {
+    font-size: 1.8rem;
   }
 
-  .step h2 {
-    font-size: 1.2rem;
+  .step {
+    padding: 1.5rem;
+  }
+
+  .step-icon {
+    font-size: 1.6rem;
   }
 }

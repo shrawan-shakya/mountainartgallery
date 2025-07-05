@@ -1,4 +1,3 @@
-// components/Navbar.js
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -38,20 +37,16 @@ export default function Navbar() {
           </div>
 
           <ul className={`nav-links ${menuOpen ? 'active' : ''}`}>
-            <li>
-              <Link to="/gallery" onClick={closeMenu}>Shop</Link>
-            </li>
-            <li>
-              <a href="#contact" onClick={closeMenu}>Contact</a>
-            </li>
-            <li>
-              <Link to="/login" onClick={closeMenu}>Admin Login</Link>
-            </li>
+            <li><Link to="/gallery" onClick={closeMenu}>Shop</Link></li>
+            <li><Link to="/how-to-buy" onClick={closeMenu}>How to Buy</Link></li>
+            <li><a href="#contact" onClick={closeMenu}>Contact</a></li>
+            <li><Link to="/login" onClick={closeMenu}>Admin Login</Link></li>
           </ul>
         </div>
       </nav>
 
-      {menuOpen && <div className="mobile-overlay" onClick={closeMenu}></div>}
+      {/* Overlay when mobile menu is open */}
+      {menuOpen && <div className="mobile-overlay active" onClick={closeMenu}></div>}
     </>
   );
 }

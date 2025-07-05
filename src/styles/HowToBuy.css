@@ -1,0 +1,79 @@
+.how-to-buy-container {
+  max-width: 700px;
+  margin: 3rem auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+
+.how-to-buy-container h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--color-primary-dark);
+}
+
+.step {
+  margin-bottom: 2rem;
+}
+
+.step h2 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+  color: var(--color-secondary);
+}
+
+.step p {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.step a {
+  color: #3b82f6;
+  text-decoration: underline;
+}
+
+.step a:hover {
+  color: #8b5cf6;
+  text-decoration: none;
+}
+
+.contact-info {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+  text-align: center;
+}
+
+.contact-info h2 {
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.contact-info a {
+  color: #ec4899;
+  text-decoration: underline;
+}
+
+.contact-info a:hover {
+  color: #c026d3;
+  text-decoration: none;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .how-to-buy-container {
+    padding: 0 15px;
+  }
+
+  .how-to-buy-container h1 {
+    font-size: 2rem;
+  }
+
+  .step h2 {
+    font-size: 1.2rem;
+  }
+}

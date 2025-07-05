@@ -72,7 +72,7 @@
 
 /* Masonry layout using CSS columns */
 .gallery-grid {
-  column-count: 2;
+  column-count: 3;
   column-gap: 40px;
   padding-top: 20px;
 }
@@ -84,8 +84,30 @@
   width: 100%;
   background: #fff;
   padding: 16px;
-  border-radius: 8px;
-  text-align: left;
+  position: relative;
+}
+
+/* Frame styles applied to image wrapper */
+.gallery-artwork-image-wrapper {
+  border: 6px solid #fff;
+  box-shadow:
+    inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
+    0 8px 16px rgba(0, 0, 0, 0.25);
+  position: relative;
+  padding: 12px; /* Padding so image doesn’t touch frame */
+  box-sizing: border-box;
+}
+
+.gallery-artwork-image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+  pointer-events: none;
+  box-shadow: inset 0 0 6px 2px rgba(0, 0, 0, 0.07);
 }
 
 /* Remove roundness from images */
@@ -94,47 +116,78 @@
   height: auto;
   object-fit: contain;
   border-radius: 0;
-  margin-bottom: 12px;
+  margin-bottom: 8px;
   display: block;
 }
 
-.gallery-artwork-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #003d99;
-  margin: 8px 0 4px;
+/* Remove underline and style links */
+.gallery-artwork-link {
+  text-decoration: none;
+  color: inherit; /* inherit color from children */
+  display: block;
 }
 
-.gallery-artwork-price {
+/* Add subtle hover effect on artwork title */
+.gallery-artwork-link:hover .gallery-artwork-title {
+  color: #002366; /* a slightly darker blue */
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* Artwork title */
+.gallery-artwork-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #0055cc;
+  margin: 12px 0 6px;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  transition: color 0.3s ease;
+}
+
+/* Info row: artist name + enquire button */
+.gallery-artwork-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 12px;
+}
+
+/* Artist name */
+.gallery-artwork-artist {
   font-size: 1rem;
   font-weight: 500;
-  color: #444;
-  margin: 4px 0 8px;
+  color: #666;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  margin: 0;
 }
 
-.gallery-artwork-tags {
-  font-size: 0.85rem;
-  color: #777;
-  font-style: italic;
-  margin-bottom: 12px;
-}
-
-/* Remove roundness from enquire button */
+/* Enquire button as icon only */
 .enquire-button {
-  display: inline-block;
-  padding: 10px 16px;
-  background-color: #0055cc;
-  color: white;
-  border-radius: 0;
-  text-decoration: none;
-  font-weight: 600;
+  background-color: transparent;
+  border: none;
+  color: #0073e6;
   cursor: pointer;
-  text-align: center;
-  transition: background-color 0.3s ease;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease, transform 0.2s ease;
+  border-radius: 4px;
 }
 
-.enquire-button:hover {
-  background-color: #003d99;
+.enquire-button svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.enquire-button:hover,
+.enquire-button:focus {
+  color: #005bb5;
+  transform: scale(1.1);
+  outline: none;
 }
 
 .gallery-no-results {

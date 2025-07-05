@@ -2,18 +2,17 @@
   position: sticky;
   top: 0;
   background-color: white;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 2rem;
+  padding: 0.1rem 2rem;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1rem;
   color: #333;
   z-index: 10000;
   transition: all 0.3s ease-in-out;
 }
-
 
 .navbar.scrolled {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -22,11 +21,14 @@
 }
 
 .navbar-brand a {
-  color: #333;
-  font-weight: 700;
-  font-size: 1.25rem;
+  display: inline-block;
   text-decoration: none;
-  letter-spacing: 1px;
+}
+
+.logo {
+  height: 68px;
+  width: auto;
+  display: block;
 }
 
 .nav-links {
@@ -37,6 +39,7 @@
   margin: 0;
   padding: 0;
 }
+
 .nav-links li a {
   color: #333;
   text-decoration: none;
@@ -54,12 +57,18 @@
     flex-direction: column;
     padding: 1rem;
   }
+
   .nav-links {
     margin-top: 0.5rem;
     flex-wrap: wrap;
     justify-content: center;
   }
+
   .nav-links li a {
     margin: 0.5rem 1rem;
+  }
+
+  .logo {
+    height: 36px;
   }
 }

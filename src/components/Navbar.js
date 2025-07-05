@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 import '../styles/Navbar.css';
 
 export default function Navbar() {
@@ -17,7 +18,9 @@ export default function Navbar() {
   return (
     <nav className={`navbar ${scrolled ? 'scrolled' : ''}`}>
       <div className="navbar-brand">
-        <Link to="/">Mountain Art Gallery</Link>
+        <Link to="/">
+          <img src={logo} alt="Mountain Art Gallery Logo" className="logo" />
+        </Link>
       </div>
       <ul className="nav-links">
         <li><a href="#gallery">Gallery</a></li>

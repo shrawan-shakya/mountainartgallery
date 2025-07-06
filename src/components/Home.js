@@ -1,6 +1,7 @@
+// src/components/Home.js
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Gallery from './Gallery';
+import FeaturedArtworks from './FeaturedArtworks';
 import ContactForm from './ContactForm';
 import '../styles/Home.css';
 
@@ -16,7 +17,7 @@ export default function Home() {
       </header>
 
       <section className="highlight-section container">
-        <Gallery />
+        <FeaturedArtworks />
       </section>
 
       <section className="contact-section container" id="contact">

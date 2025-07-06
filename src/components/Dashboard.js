@@ -18,10 +18,10 @@ import {
 } from 'firebase/storage';
 import { db, storage, auth } from '../firebase';
 import { onAuthStateChanged } from 'firebase/auth';
-import imageCompression from 'browser-image-compression';
 import '../styles/Dashboard.css';
 
 export default function Dashboard() {
+  // Form states
   const [title, setTitle] = useState('');
   const [price, setPrice] = useState('');
   const [tags, setTags] = useState('');
@@ -32,6 +32,7 @@ export default function Dashboard() {
   const [medium, setMedium] = useState('');
   const [uploadProgress, setUploadProgress] = useState(0);
 
+  // Admin UI states
   const [artworks, setArtworks] = useState([]);
   const [editId, setEditId] = useState(null);
   const [promoText, setPromoText] = useState('');
@@ -39,6 +40,7 @@ export default function Dashboard() {
   const [error, setError] = useState('');
   const [user, setUser] = useState(null);
 
+  // Auth check
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
       setUser(firebaseUser);
@@ -46,6 +48,7 @@ export default function Dashboard() {
     return unsubscribe;
   }, []);
 
+  // Load promo text
   useEffect(() => {
     const loadPromo = async () => {
       const promoRef = doc(db, 'site-settings', 'promo');
@@ -55,8 +58,10 @@ export default function Dashboard() {
     loadPromo();
   }, []);
 
+  // Fetch artworks list
   useEffect(() => {
-    if (!user) return;
+    if (!user) return; // wait for auth
+
     const fetchArtworks = async () => {
       try {
         const querySnapshot = await getDocs(collection(db, 'artworks'));
@@ -72,6 +77,7 @@ export default function Dashboard() {
     fetchArtworks();
   }, [user]);
 
+  // Handle upload or update
   const handleUpload = async (e) => {
     e.preventDefault();
     setSuccess('');
@@ -95,24 +101,23 @@ export default function Dashboard() {
       let downloadURL = null;
 
       if (imageFile) {
-        const compressedFile = await imageCompression(imageFile, {
-          maxSizeMB: 1,
-          maxWidthOrHeight: 1920,
-          useWebWorker: true,
-        });
-
-        const fileName = `${Date.now()}_${compressedFile.name}`;
+        // Upload new image
+        const fileName = `${Date.now()}_${imageFile.name}`;
         const storageRef = ref(storage, `artworks/${fileName}`);
-        const uploadTask = uploadBytesResumable(storageRef, compressedFile);
+
+        const uploadTask = uploadBytesResumable(storageRef, imageFile);
 
         await new Promise((resolve, reject) => {
           uploadTask.on(
             'state_changed',
             (snapshot) => {
-              const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               setUploadProgress(progress);
             },
-            (uploadError) => reject(uploadError),
+            (uploadError) => {
+              reject(uploadError);
+            },
             () => {
               getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                 downloadURL = url;
@@ -123,6 +128,7 @@ export default function Dashboard() {
         });
       }
 
+      // Prepare data
       const artworkData = {
         title,
         price: parseFloat(price),
@@ -136,9 +142,11 @@ export default function Dashboard() {
       if (downloadURL) artworkData.imageUrl = downloadURL;
 
       if (editId) {
+        // Update existing
         const docRef = doc(db, 'artworks', editId);
         await updateDoc(docRef, artworkData);
 
+        // If image changed, delete old image
         if (imageFile && artworks.find((a) => a.id === editId)?.imageUrl) {
           const oldUrl = artworks.find((a) => a.id === editId).imageUrl;
           try {
@@ -154,11 +162,13 @@ export default function Dashboard() {
 
         setSuccess('Artwork updated successfully!');
       } else {
+        // New artwork
         artworkData.createdAt = Timestamp.now();
         await addDoc(collection(db, 'artworks'), artworkData);
         setSuccess('Artwork uploaded successfully!');
       }
 
+      // Reset form and reload artworks
       setTitle('');
       setPrice('');
       setTags('');
@@ -170,6 +180,7 @@ export default function Dashboard() {
       setEditId(null);
       setUploadProgress(0);
 
+      // Reload list
       const querySnapshot = await getDocs(collection(db, 'artworks'));
       const arts = [];
       querySnapshot.forEach((doc) => {
@@ -182,6 +193,7 @@ export default function Dashboard() {
     }
   };
 
+  // Load artwork data into form for editing
   const startEdit = (artwork) => {
     setTitle(artwork.title);
     setPrice(artwork.price);
@@ -191,17 +203,20 @@ export default function Dashboard() {
     setDimensions(artwork.dimensions);
     setMedium(artwork.medium);
     setEditId(artwork.id);
-    setImageFile(null);
+    setImageFile(null); // clear file, upload optional on edit
     setSuccess('');
     setError('');
   };
 
+  // Delete artwork and image
   const handleDelete = async (id, imageUrl) => {
     if (!window.confirm('Are you sure you want to delete this artwork?')) return;
 
     try {
+      // Delete Firestore doc
       await deleteDoc(doc(db, 'artworks', id));
 
+      // Delete image from storage
       if (imageUrl) {
         const path = decodeURIComponent(
           imageUrl.split('/o/')[1].split('?')[0]
@@ -210,6 +225,7 @@ export default function Dashboard() {
         await deleteObject(imageRef);
       }
 
+      // Remove from local list
       setArtworks((arts) => arts.filter((a) => a.id !== id));
       setSuccess('Artwork deleted successfully!');
       setError('');
@@ -227,6 +243,7 @@ export default function Dashboard() {
     <div className="dashboard-wrapper">
       <h2>Admin Dashboard</h2>
 
+      {/* Promo Text Section */}
       <section className="promo-editor">
         <h3>Promotion Bar Text</h3>
         <textarea
@@ -248,8 +265,10 @@ export default function Dashboard() {
         </button>
       </section>
 
+      {/* Upload/Edit Form */}
       <section className="upload-form">
         <h3>{editId ? 'Edit Artwork' : 'Upload New Artwork'}</h3>
+
         {success && <p className="success-message">{success}</p>}
         {error && <p className="error-message">{error}</p>}
         {uploadProgress > 0 && uploadProgress < 100 && (
@@ -340,6 +359,7 @@ export default function Dashboard() {
         </form>
       </section>
 
+      {/* Artworks List */}
       <section className="artworks-list">
         <h3>Existing Artworks</h3>
         {artworks.length === 0 && <p>No artworks found.</p>}
@@ -350,14 +370,16 @@ export default function Dashboard() {
                 src={art.imageUrl}
                 alt={art.title}
                 className="artwork-thumb"
-                loading="lazy"
               />
               <strong className="artwork-title">{art.title}</strong>
               <div className="artwork-price">${art.price.toFixed(2)}</div>
               <button className="edit-btn" onClick={() => startEdit(art)}>
                 Edit
               </button>
-              <button className="delete-btn" onClick={() => handleDelete(art.id, art.imageUrl)}>
+              <button
+                className="delete-btn"
+                onClick={() => handleDelete(art.id, art.imageUrl)}
+              >
                 Delete
               </button>
             </div>

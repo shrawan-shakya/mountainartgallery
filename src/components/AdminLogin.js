@@ -16,8 +16,19 @@ export default function AdminLogin() {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       navigate('/dashboard');
-    } catch {
-      setError('Failed to log in. Please check your credentials.');
+    } catch (err) {
+      console.error('Login error:', err.code, err.message); // 🔍 log full error to console
+      if (err.code === 'auth/user-not-found') {
+        setError('No user found with this email.');
+      } else if (err.code === 'auth/wrong-password') {
+        setError('Incorrect password. Try again.');
+      } else if (err.code === 'auth/invalid-email') {
+        setError('Invalid email format.');
+      } else if (err.code === 'auth/too-many-requests') {
+        setError('Too many failed attempts. Try again later.');
+      } else {
+        setError('Login failed. ' + err.message);
+      }
     }
   };
 

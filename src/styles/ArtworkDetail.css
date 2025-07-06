@@ -4,6 +4,7 @@
   margin: 40px auto;
   gap: 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
 }
 
 .artwork-detail-image-wrapper {
@@ -45,7 +46,7 @@
   font-size: 1rem;
   color: #555;
   line-height: 1.4;
-  white-space: pre-line; /* preserves line breaks */
+  white-space: pre-line;
 }
 
 .artwork-detail-enquire-button {
@@ -65,6 +66,104 @@
   background-color: #003d99;
 }
 
+/* Modal */
+.enquiry-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px;
+}
+
+.enquiry-modal {
+  background: white;
+  padding: 24px;
+  border-radius: 10px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 2001;
+}
+
+.enquiry-modal h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  margin-bottom: 12px;
+}
+
+.enquiry-modal form input,
+.enquiry-modal form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.enquiry-modal form button {
+  padding: 10px 16px;
+  background-color: #0055cc;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  width: 100%;
+}
+
+.enquiry-modal form button:hover {
+  background-color: #003d99;
+}
+
+.enquiry-or-label {
+  text-align: center;
+  margin: 12px 0 8px;
+  font-size: 1rem;
+  color: #555;
+}
+
+.enquiry-whatsapp-button {
+  display: block;
+  margin-top: 4px;
+  background-color: #25D366;
+  color: white;
+  padding: 10px 16px;
+  text-align: center;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.enquiry-whatsapp-button:hover {
+  background-color: #1ebe5c;
+}
+
+.enquiry-close-button {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #444;
+  cursor: pointer;
+}
+
+.enquiry-sent-message {
+  text-align: center;
+  padding: 20px;
+  color: green;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .artwork-detail-container {
     flex-direction: column;
@@ -80,5 +179,9 @@
   .artwork-detail-enquire-button {
     width: 100%;
     text-align: center;
+  }
+
+  .enquiry-modal {
+    padding: 18px;
   }
 }

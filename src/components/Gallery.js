@@ -133,7 +133,21 @@ export default function Gallery() {
             <div className="gallery-artwork-item" key={art.id}>
               <Link to={`/artwork/${art.id}`} className="gallery-artwork-link">
                 <div className="gallery-artwork-image-wrapper">
-                  <img src={art.imageUrl} alt={art.title} className="gallery-artwork-image" />
+                  <picture>
+                    {/* Try WebP version if URL supports it */}
+                    {art.imageUrl.endsWith('.jpg') || art.imageUrl.endsWith('.png') ? (
+                      <source
+                        type="image/webp"
+                        srcSet={art.imageUrl.replace(/\.(jpg|jpeg|png)$/i, '.webp')}
+                      />
+                    ) : null}
+                    <img
+                      src={art.imageUrl}
+                      alt={art.title}
+                      className="gallery-artwork-image"
+                      loading="lazy"
+                    />
+                  </picture>
                 </div>
                 <div className="gallery-info-label">
                   <div className="gallery-info-text">

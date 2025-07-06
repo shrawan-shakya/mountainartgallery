@@ -1,5 +1,5 @@
 .contact-form-section {
-  max-width: 600px;
+  max-width: 900px;
   margin: 40px auto;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 0 16px;
@@ -11,6 +11,42 @@
   margin-bottom: 24px;
   color: #222;
   text-align: center;
+}
+
+.contact-form__container {
+  display: flex;
+  gap: 40px;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.contact-form__left,
+.contact-form__right {
+  flex: 1 1 400px;
+  min-width: 300px;
+}
+
+.contact-form__right h3 {
+  font-size: 1.8rem;
+  margin-bottom: 16px;
+  color: #003d99;
+}
+
+.contact-form__right p {
+  font-size: 1rem;
+  color: #444;
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+
+.contact-form__right a {
+  color: #0055cc;
+  text-decoration: none;
+}
+
+.contact-form__right a:hover {
+  text-decoration: underline;
 }
 
 .contact-form__options {
@@ -52,7 +88,7 @@
 }
 
 .contact-form__form-wrapper {
-  text-align: center;
+  text-align: left;
 }
 
 .contact-form__form-text {
@@ -104,42 +140,9 @@
   background-color: #e0e0e0;
 }
 
-/* Success and error messages */
-
-.contact-form__success-message {
-  color: green;
-  margin-top: 12px;
-  font-weight: 600;
-  text-align: center;
-}
-
-.contact-form__error-message {
-  color: red;
-  margin-top: 12px;
-  font-weight: 600;
-  text-align: center;
-}
-
-/* Subtle fade-in animation for messages */
-.contact-form__success-message,
-.contact-form__error-message {
-  animation: fadeIn 0.4s ease forwards;
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-5px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
 /* Responsive */
-@media (max-width: 480px) {
-  .contact-form__options {
-    gap: 12px;
+@media (max-width: 768px) {
+  .contact-form__container {
+    flex-direction: column;
   }
 }

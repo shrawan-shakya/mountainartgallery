@@ -36,7 +36,7 @@
 .contact-form__left p {
   font-size: 1rem;
   color: #444;
-  line-height: 1.4;
+  line-height: 1.5;
   margin-bottom: 16px;
 }
 
@@ -136,9 +136,37 @@
   background-color: #128C7E;
 }
 
-/* Responsive */
+/* ================================
+   Mobile Responsive Adjustments
+   ================================ */
+
 @media (max-width: 768px) {
+  .contact-form-section {
+    padding: 0 12px;
+  }
+
   .contact-form__container {
     flex-direction: column;
+    gap: 24px;
+  }
+
+  .contact-form__left,
+  .contact-form__right {
+    flex: 1 1 100%;
+    min-width: 100%;
+  }
+
+  .contact-form__title {
+    font-size: 1.6rem;
+  }
+
+  .contact-form__left h3 {
+    font-size: 1.4rem;
+  }
+
+  .contact-form__submit-btn,
+  .contact-form__btn--whatsapp {
+    font-size: 1rem;
+    padding: 12px;
   }
 }

@@ -3,7 +3,6 @@
   top: 80px;
   left: 30px;
   width: 180px;
-  opacity: 0.08;
   z-index: 0;
   pointer-events: none;
   transform: rotate(-10deg);

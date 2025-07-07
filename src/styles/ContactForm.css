@@ -59,7 +59,7 @@
 .contact-form__form-text {
   font-size: 1rem;
   color: #444;
-  margin-bottom: 8px;
+  margin:10px 0 8px 0;
 }
 
 .contact-form {
@@ -142,7 +142,7 @@
 
 @media (max-width: 768px) {
   .contact-form-section {
-    padding: 0 12px;
+    padding: 0 24px;
   }
 
   .contact-form__container {

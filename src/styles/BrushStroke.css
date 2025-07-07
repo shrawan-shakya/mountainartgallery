@@ -1,0 +1,20 @@
+.brush-stroke {
+  position: absolute;
+  top: 80px;
+  left: 30px;
+  width: 180px;
+  opacity: 0.08;
+  z-index: 0;
+  pointer-events: none;
+  transform: rotate(-10deg);
+}
+
+/* You can duplicate this class or vary styles if you use multiple brush strokes */
+
+@media (max-width: 768px) {
+  .brush-stroke {
+    width: 120px;
+    top: 60px;
+    left: 10px;
+  }
+}

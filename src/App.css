@@ -19,7 +19,7 @@ html, body, #root {
 
 /* Container: centers and limits max width */
 .container {
-  max-width: 1200px;
+  
   margin: 0 auto;
   
 }

@@ -2,6 +2,8 @@
   padding: 5rem 0 3rem;
   text-align: center;
   color: var(--color-primary-dark);
+  position: relative;
+  z-index: 1;
 }
 
 .home-header h1 {
@@ -62,6 +64,19 @@
 .contact-section {
   padding-bottom: var(--spacing-xl);
 }
+
+.brush-stroke {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%) rotate(-5deg);
+  width: 600px;
+  opacity: 0.15;
+  z-index: 0;
+  pointer-events: none;
+}
+
+
 
 /* ======= Responsive: Adjust Hero Section for Mobile ======= */
 @media (max-width: 768px) {

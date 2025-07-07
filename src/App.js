@@ -11,6 +11,11 @@ import Dashboard from './components/Dashboard';
 import ArtworkDetail from './components/ArtworkDetail';
 import Navbar from './components/Navbar';
 import PromoBar from './components/PromoBar';
+import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
+
+
+
 import './App.css';
 
 function App() {
@@ -28,8 +33,10 @@ function App() {
   };
 
   return (
+    
     <Router>
       <>
+      <ScrollToTop />      
         <PromoBar />
         <Navbar />
         <div className="container">
@@ -55,6 +62,7 @@ function App() {
               }
             />
           </Routes>
+          <Footer />
         </div>
       </>
     </Router>

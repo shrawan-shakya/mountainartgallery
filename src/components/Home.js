@@ -4,13 +4,12 @@ import { Link } from 'react-router-dom';
 import FeaturedArtworks from './FeaturedArtworks';
 import ContactForm from './ContactForm';
 import PhotographyToPainting from './PhotographyToPainting';
-
 import '../styles/Home.css';
 
 export default function Home() {
   return (
     <>
-      {/* Decorative Brush SVG */}
+  
       
 
       <header className="home-header container">

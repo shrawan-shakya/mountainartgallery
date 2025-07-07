@@ -25,12 +25,15 @@
 .contact-form__right {
   flex: 1 1 400px;
   min-width: 300px;
+  position: relative;
 }
 
 .contact-form__left h3 {
   font-size: 1.8rem;
   margin-bottom: 16px;
   color: #171717;
+  position: relative;
+  z-index: 2;
 }
 
 .contact-form__left p {
@@ -38,6 +41,8 @@
   color: #444;
   line-height: 1.5;
   margin-bottom: 16px;
+  position: relative;
+  z-index: 2;
 }
 
 .contact-form__left a {
@@ -143,7 +148,7 @@
   left: 50%;
   transform: translateX(-50%) scale(1.3);
   width: 300px;
-  opacity: 0.8;
+  opacity: 0.08;
   z-index: 1;
   pointer-events: none;
 }

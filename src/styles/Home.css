@@ -116,3 +116,7 @@
     font-size: 0.95rem;
   }
 }
+.home-header {
+
+  min-height: 100%;
+}

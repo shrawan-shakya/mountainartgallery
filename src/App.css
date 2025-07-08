@@ -1,3 +1,5 @@
+/* App.css */
+
 /* Global reset */
 *,
 *::before,
@@ -7,21 +9,35 @@
   box-sizing: border-box;
 }
 
-/* Body & root styling */
+/* Global base styles */
 html, body, #root {
   width: 100%;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-body);
   background: #fafafa;
   color: #333;
   scroll-behavior: smooth;
 }
 
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+.subtitle {
+  font-family: var(--font-body);
+  font-weight: 400;
+}
+
+button, .explore-button, nav a, .menu-item {
+  font-family: var(--font-ui);
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
 
 /* Container: centers and limits max width */
 .container {
-  
   margin: 0 auto;
-  
 }
 
 /* Header */
@@ -87,6 +103,7 @@ header h1 {
   border-radius: 4px;
   font-weight: 600;
   transition: background-color 0.3s ease;
+  font-family: var(--font-ui);
 }
 
 .art a:hover {
@@ -135,6 +152,7 @@ header h1 {
   font-weight: 700;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: var(--font-ui);
 }
 
 .contact button:hover {

@@ -1,6 +1,5 @@
 import React from 'react';
 import '../styles/ContactForm.css';
-import brush1 from '../assets/brush1.svg'; // 🖌️ Import brush SVG
 
 export default function ContactForm() {
   const email = "mag.boudha@gmail.com";
@@ -13,7 +12,6 @@ export default function ContactForm() {
 
       <div className="contact-form__container">
         <div className="contact-form__left">
-          <img src={brush1} alt="" className="brush-behind-heading" aria-hidden="true" />         
           <h3>We would love to hear from you.</h3>
           <p>
             We're here to help you find the perfect piece of art! For all enquiries, please send us a note here or email us at <a href={`mailto:${email}`}>{email}</a>.

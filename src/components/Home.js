@@ -9,12 +9,8 @@ import '../styles/Home.css';
 export default function Home() {
   return (
     <>
-  
-      
-
       <header className="home-header container">
         <h1>Discover the Beauty of Nepalese Art.</h1>
-        
         <p className="subtitle">
           Explore breathtaking paintings by local artists at Mountain Art Gallery.
         </p>
@@ -27,7 +23,6 @@ export default function Home() {
 
       <section className="photography-to-painting-section">
         <PhotographyToPainting />
-      
       </section>
 
       <section className="contact-section container" id="contact">

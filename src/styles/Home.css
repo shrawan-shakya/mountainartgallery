@@ -4,6 +4,34 @@
   color: var(--color-primary-dark);
   position: relative;
   z-index: 1;
+  background-image: url('../assets/hero-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh; /* Full screen height */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Optional dark overlay for readability */
+.home-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 0;
+}
+
+.home-header h1,
+.home-header .subtitle,
+.explore-button {
+  position: relative;
+  z-index: 2;
 }
 
 .home-header h1 {
@@ -11,12 +39,13 @@
   font-weight: 900;
   letter-spacing: 0.05em;
   margin-bottom: var(--spacing-md);
+  color: #fff;
 }
 
 .home-header .subtitle {
-  font-size: 1.3rem;
+  font-size: 1rem;
   font-weight: 500;
-  color: var(--color-text-secondary);
+  color: #e0e0e0;
   max-width: 600px;
   margin: 2rem auto 1.5rem;
   line-height: 1.5;
@@ -39,6 +68,8 @@
   transition: background-position 0.5s ease, color 0.3s ease;
   background-size: 300% 100%;
   background-position: 0% 0%;
+  position: relative;
+  z-index: 2;
 }
 
 .explore-button:hover {
@@ -64,8 +95,6 @@
 .contact-section {
   padding-bottom: var(--spacing-xl);
 }
-
-
 
 /* ======= Responsive: Adjust Hero Section for Mobile ======= */
 @media (max-width: 768px) {

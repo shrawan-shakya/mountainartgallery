@@ -3,7 +3,7 @@
   position: relative;
   z-index: 1;
   background-image: url('../assets/hero-bg.jpg');
-  background-size: cover; /* fill and crop if needed */
+  background-size: cover; /* ensures it fills screen, may crop */
   background-position: center;
   background-repeat: no-repeat;
   min-height: 100vh;
@@ -81,22 +81,37 @@
   padding-bottom: var(--spacing-xl);
 }
 
+/* ======== MOBILE ========= */
 @media (max-width: 768px) {
   .home-header {
-    background-size: cover;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
     padding: 3rem 1.5rem 2rem;
+    background-position: left center; /* focus on subject */
+    text-align: center;
   }
 
   .home-header .hero-content {
-    margin-right: 0;
+    margin: 0 auto;
     max-width: 100%;
     padding: 0 1.5rem;
   }
 
-  .home-header h1,
-  .home-header .subtitle,
+  .home-header h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .home-header .subtitle {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    text-align: center;
+  }
+
   .explore-button {
+    padding: 10px 24px;
+    font-size: 0.95rem;
     text-align: center;
   }
 }

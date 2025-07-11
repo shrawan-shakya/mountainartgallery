@@ -10,9 +10,16 @@ export default function Home() {
     <>
       <header className="home-header">
         <div className="hero-content">
-          <h1>Discover the Beauty of Nepalese Art.</h1>
+          <h1>
+            Shop our selection of <br />
+            one-of-a-kind paintings.
+          </h1>
           <p className="subtitle">
-            Explore breathtaking paintings by local artists at Mountain Art Gallery.
+            Our talented artists create beautiful, meaningful paintings that are sure 
+            to be treasured for years to come.
+          </p>
+          <p className="subtitle">
+            • 1000s of paintings  • 20 years of experience
           </p>
           <Link to="/gallery" className="explore-button">Shop Gallery</Link>
         </div>

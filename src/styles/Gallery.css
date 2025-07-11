@@ -27,13 +27,13 @@
 
 .gallery-search {
   flex: 1 1 220px;
-  padding: 8px 12px;
+  padding: 6px 12px;  /* Reduced vertical padding for smaller height */
   font-size: 1rem;
   border: 1.5px solid #ccc;
   border-radius: 4px;
   background-color: #fff;
   outline: none;
-  height: 36px;
+  height: 32px;  /* Reduced from 36px */
   transition: border-color 0.3s ease;
   font-family: inherit;
 }
@@ -233,6 +233,12 @@
   .gallery-sort-select,
   .gallery-clear-filters {
     width: 100%;
+  }
+
+  /* Fix search input height on mobile */
+  .gallery-search {
+    height: 32px;
+    font-size: 0.95rem;
   }
 
   .gallery-price-label {

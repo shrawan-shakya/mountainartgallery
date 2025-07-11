@@ -69,7 +69,6 @@ export default function Navbar() {
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
               onKeyDown={handleKeyDown}
-              onClick={closeMenu}
               autoComplete="off"
             />
           </li>

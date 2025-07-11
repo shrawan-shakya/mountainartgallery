@@ -95,16 +95,19 @@
   .home-header .hero-content {
     margin: 0;
     max-width: 100%;
-    padding: 2rem;
-
-    background: rgba(255, 255, 255, 0.85);  /* translucent white box */
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 20px;
+    background: #fdfdfd;
+    border: 6px solid #fff;
+    border-radius: 10px;
+    box-shadow:
+      inset 0 0 10px 3px rgba(0, 0, 0, 0.12),
+      0 8px 16px rgba(0, 0, 0, 0.25);
     text-align: center;
   }
 
   .home-header h1 {
     font-size: 2rem;
+    text-align: center;
   }
 
   .home-header .subtitle {

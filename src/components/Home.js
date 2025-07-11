@@ -12,16 +12,21 @@ export default function Home() {
         <div className="hero-content">
           <h1>
             Shop our selection of <br />
-            one-of-a-kind paintings.
+            one‑of‑a‑kind paintings.
           </h1>
+
           <p className="subtitle">
-            Our talented artists create beautiful, meaningful paintings that are sure 
-            to be treasured for years to come.
+            Our talented artists create beautiful, meaningful paintings that are
+            sure to be treasured for years to come.
           </p>
+
           <p className="subtitle">
-            • 1000s of paintings  • 20 years of experience
+            • 1000s of paintings&nbsp;&nbsp;• 20&nbsp;years of experience
           </p>
-          <Link to="/gallery" className="explore-button">Shop Gallery</Link>
+
+          <Link to="/gallery" className="explore-button">
+            Shop Gallery
+          </Link>
         </div>
       </header>
 

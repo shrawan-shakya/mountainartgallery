@@ -1,20 +1,21 @@
+/* -------------  DESKTOP DEFAULT  ------------- */
 .home-header {
+  width: 100%;
+  margin: 0;
   padding: 5rem 0 3rem;
   position: relative;
   z-index: 1;
+
   background-image: url('../assets/hero-bg.jpg');
-  background-size: cover; /* ensures it fills screen, may crop */
-  background-position: center;
+  background-size: cover;           /* fills width, may crop */
+  background-position: center;      /* keeps subject centered on desktop */
   background-repeat: no-repeat;
-  min-height: 100vh;
+
+  min-height: 100vh;                /* full‑screen height on desktop */
   display: flex;
   justify-content: flex-end;
   align-items: center;
   text-align: left;
-  width: 100%;
-  margin: 0;
-  padding-left: 0;
-  padding-right: 0;
 }
 
 .home-header .hero-content {
@@ -29,18 +30,16 @@
   font-size: 2.8rem;
   font-weight: 900;
   letter-spacing: 0.05em;
-  margin-bottom: var(--spacing-md);
+  margin-bottom: 1.5rem;
   color: #111;
-  text-align: left;
 }
 
 .home-header .subtitle {
   font-size: 1rem;
   font-weight: 500;
   color: #222;
-  margin: 2rem 0 1.5rem;
+  margin: 1.5rem 0 1rem;
   line-height: 1.5;
-  text-align: left;
 }
 
 .explore-button {
@@ -49,6 +48,7 @@
   padding: 12px 28px;
   font-size: 1rem;
   font-weight: 600;
+
   background: linear-gradient(90deg, #3b82f6, #8b5cf6, #ec4899);
   color: #fff;
   border: none;
@@ -56,20 +56,18 @@
   text-decoration: none;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  transition: background-position 0.5s ease, color 0.3s ease;
+
   background-size: 300% 100%;
   background-position: 0% 0%;
-  position: relative;
-  z-index: 2;
-  text-align: left;
+  transition: background-position 0.5s ease, color 0.3s ease;
 }
 
 .explore-button:hover {
   background-position: 100% 0%;
-  color: #fff;
   cursor: pointer;
 }
 
+/* -------------  SHARED SECTION STYLES  ------------- */
 .highlight-section {
   background-color: var(--color-bg-alt);
   padding: var(--spacing-xl) 0;
@@ -81,37 +79,40 @@
   padding-bottom: var(--spacing-xl);
 }
 
-/* ======== MOBILE ========= */
+/* -------------  MOBILE OVERRIDES  (≤ 768 px) ------------- */
 @media (max-width: 768px) {
   .home-header {
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
-    padding: 3rem 1.5rem 2rem;
-    background-position: left center; /* focus on subject */
-    text-align: center;
+    padding: 2.5rem 1rem;
+
+    background-position: left center;   /* show subject on left */
+    min-height: auto;                   /* height adjusts to content */
   }
 
   .home-header .hero-content {
-    margin: 0 auto;
+    margin: 0;
     max-width: 100%;
-    padding: 0 1.5rem;
+    padding: 2rem;
+
+    background: rgba(255, 255, 255, 0.85);  /* translucent white box */
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
   }
 
   .home-header h1 {
     font-size: 2rem;
-    text-align: center;
   }
 
   .home-header .subtitle {
-    font-size: 1.1rem;
+    font-size: 1.05rem;
     margin-top: 1rem;
-    text-align: center;
   }
 
   .explore-button {
     padding: 10px 24px;
     font-size: 0.95rem;
-    text-align: center;
   }
 }

@@ -1,3 +1,4 @@
+/* Navbar base styles */
 .navbar {
   position: sticky;
   top: 0;
@@ -5,7 +6,8 @@
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
   padding: 0.2rem 1.5rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Source Sans 3', sans-serif;
+  transition: box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -26,28 +28,71 @@
   width: auto;
 }
 
+/* Nav links container */
 .nav-links {
   display: flex;
   gap: 1.5rem;
   list-style: none;
+  align-items: center;
 }
 
+/* Nav link styles */
 .nav-links li a,
 .nav-links li Link {
   text-decoration: none;
   color: #111;
   font-weight: 500;
   transition: color 0.2s ease;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-transform: uppercase;
-  letter-spacing: .5px;
+  letter-spacing: 1px;
+  cursor: pointer;
+  font-family: 'Source Sans 3', sans-serif;
+  
 }
 
 .nav-links a:hover {
   color: #0055cc;
 }
 
-/* Hamburger Menu */
+/* Sale and New badges */
+/* .nav-sale {
+  color: #d9534f;
+
+}
+
+.nav-new {
+  color: #28a745;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.nav-new .star {
+  color: gold;
+  font-size: 1.1rem;
+  line-height: 1;
+} */
+
+/* Search input in navbar */
+.nav-search-input {
+  font-size: 0.9rem;
+  padding: 10px 32px 10px 16px;
+  border-radius: 4px;
+  border: 1.5px solid #ccc;
+  width: 220px;
+  transition: border-color 0.3s ease;
+  background: url("data:image/svg+xml,%3Csvg fill='none' stroke='%23666' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") no-repeat right 16px center;
+  background-size: 16px 16px;
+}
+
+.nav-search-input:focus {
+  outline: none;
+  border-color: #0055cc;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%230055cc' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+}
+
+/* Hamburger menu styles */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -63,7 +108,6 @@
   transition: all 0.3s ease;
 }
 
-/* Hamburger open transition */
 .hamburger.open .bar1 {
   transform: rotate(45deg) translate(5px, 5px);
 }
@@ -76,12 +120,14 @@
   transform: rotate(-45deg) translate(6px, -6px);
 }
 
-/* Mobile Styles */
+/* Responsive styles */
 @media (max-width: 768px) {
+  /* Show hamburger */
   .hamburger {
     display: flex;
   }
 
+  /* Nav links become a sliding panel */
   .nav-links {
     position: fixed;
     top: 0;
@@ -96,6 +142,7 @@
     z-index: 1050;
   }
 
+  /* When active, slide nav links in */
   .nav-links.active {
     right: 0;
   }
@@ -113,5 +160,9 @@
     font-size: 1.2rem;
   }
 
-  /* Overlay styles REMOVED */
+  /* Search input full width on mobile and margin */
+  .nav-search-input {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
 }

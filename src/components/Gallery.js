@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
 import { Link } from 'react-router-dom';
+import Masonry from 'react-masonry-css';
 import '../styles/Gallery.css';
 
 export default function Gallery() {
@@ -57,6 +58,12 @@ export default function Gallery() {
     setPriceRange({ min: '', max: '' });
     setMediumFilter('');
     setSort('');
+  };
+
+  const breakpointColumnsObj = {
+    default: 3,
+    1024: 2,
+    640: 1
   };
 
   return (
@@ -128,13 +135,16 @@ export default function Gallery() {
           <p className="gallery-no-results">No artworks found matching your criteria.</p>
         </div>
       ) : (
-        <div className="gallery-grid">
+        <Masonry
+          breakpointCols={breakpointColumnsObj}
+          className="gallery-masonry-grid"
+          columnClassName="gallery-masonry-column"
+        >
           {filteredArtworks.map(art => (
             <div className="gallery-artwork-item" key={art.id}>
               <Link to={`/artwork/${art.id}`} className="gallery-artwork-link">
                 <div className="gallery-artwork-image-wrapper">
                   <picture>
-                    {/* Try WebP version if URL supports it */}
                     {art.imageUrl.endsWith('.jpg') || art.imageUrl.endsWith('.png') ? (
                       <source
                         type="image/webp"
@@ -160,7 +170,7 @@ export default function Gallery() {
               </Link>
             </div>
           ))}
-        </div>
+        </Masonry>
       )}
     </div>
   );

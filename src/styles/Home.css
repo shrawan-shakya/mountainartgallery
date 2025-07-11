@@ -1,37 +1,28 @@
 .home-header {
   padding: 5rem 0 3rem;
-  text-align: center;
-  color: var(--color-primary-dark);
   position: relative;
   z-index: 1;
   background-image: url('../assets/hero-bg.jpg');
-  background-size: cover;
+  background-size: cover; /* fill and crop if needed */
   background-position: center;
   background-repeat: no-repeat;
-  min-height: 100vh; /* Full screen height */
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-}
-
-/* Optional dark overlay for readability */
-.home-header::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
+  text-align: left;
   width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  z-index: 0;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.home-header h1,
-.home-header .subtitle,
-.explore-button {
+.home-header .hero-content {
   position: relative;
   z-index: 2;
+  max-width: 600px;
+  padding: 0 2rem;
+  margin-right: 5%;
 }
 
 .home-header h1 {
@@ -39,19 +30,19 @@
   font-weight: 900;
   letter-spacing: 0.05em;
   margin-bottom: var(--spacing-md);
-  color: #fff;
+  color: #111;
+  text-align: left;
 }
 
 .home-header .subtitle {
   font-size: 1rem;
   font-weight: 500;
-  color: #e0e0e0;
-  max-width: 600px;
-  margin: 2rem auto 1.5rem;
+  color: #222;
+  margin: 2rem 0 1.5rem;
   line-height: 1.5;
+  text-align: left;
 }
 
-/* Explore Gallery Button with Gradient, no border radius */
 .explore-button {
   display: inline-block;
   margin-top: 1rem;
@@ -70,6 +61,7 @@
   background-position: 0% 0%;
   position: relative;
   z-index: 2;
+  text-align: left;
 }
 
 .explore-button:hover {
@@ -85,34 +77,26 @@
   margin-bottom: var(--spacing-xl);
 }
 
-.highlight-section h2 {
-  text-align: center;
-  font-size: 2rem;
-  color: var(--color-secondary);
-  letter-spacing: 0.04em;
-}
-
 .contact-section {
   padding-bottom: var(--spacing-xl);
 }
 
-/* ======= Responsive: Adjust Hero Section for Mobile ======= */
 @media (max-width: 768px) {
   .home-header {
+    background-size: cover;
+    justify-content: center;
     padding: 3rem 1.5rem 2rem;
   }
 
-  .home-header h1 {
-    font-size: 2rem;
+  .home-header .hero-content {
+    margin-right: 0;
+    max-width: 100%;
+    padding: 0 1.5rem;
   }
 
-  .home-header .subtitle {
-    font-size: 1.1rem;
-    margin-top: 1rem;
-  }
-
+  .home-header h1,
+  .home-header .subtitle,
   .explore-button {
-    padding: 10px 24px;
-    font-size: 0.95rem;
+    text-align: center;
   }
 }

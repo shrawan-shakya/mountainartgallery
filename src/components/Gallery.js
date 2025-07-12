@@ -5,12 +5,17 @@ import { Link } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
 import '../styles/Gallery.css';
 
-export default function Gallery() {
+export default function Gallery({ searchTerm = '' }) {
   const [artworks, setArtworks] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(searchTerm);
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
   const [mediumFilter, setMediumFilter] = useState('');
   const [sort, setSort] = useState('');
+
+  // Sync internal search state when prop changes
+  useEffect(() => {
+    setSearch(searchTerm);
+  }, [searchTerm]);
 
   useEffect(() => {
     const fetchArtworks = async () => {

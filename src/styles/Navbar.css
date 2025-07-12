@@ -22,7 +22,7 @@
 }
 
 .navbar-logo img {
-  height: 40px;
+  height: 52px;
   cursor: pointer;
 }
 
@@ -31,6 +31,7 @@
   flex-direction: column;
   cursor: pointer;
   gap: 6px;
+  z-index: 1001;
 }
 
 .hamburger .bar {
@@ -39,18 +40,6 @@
   background-color: #111;
   border-radius: 2px;
   transition: 0.3s;
-}
-
-.hamburger.open .bar1 {
-  transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.open .bar2 {
-  opacity: 0;
-}
-
-.hamburger.open .bar3 {
-  transform: rotate(-45deg) translate(5px, -5px);
 }
 
 .nav-links {
@@ -104,26 +93,38 @@
   outline: none;
 }
 
+/* Hide close button on desktop */
+.nav-close-btn {
+  display: none;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .hamburger {
     display: flex;
   }
 
+  /* Hide hamburger icon when menu is open */
+  .hamburger.open {
+    display: none;
+  }
+
   .nav-links {
     position: fixed;
-    top: 60px;
+    top: 0;
     right: 0;
-    height: calc(100% - 60px);
-    width: 240px;
+    height: 100%;
+    width: 260px;
     background: #fff;
     flex-direction: column;
     align-items: flex-start;
     padding: 20px;
+    padding-top: 60px;
     gap: 16px;
     transform: translateX(100%);
     transition: transform 0.3s ease;
     box-shadow: -4px 0 8px rgba(0,0,0,0.1);
+    z-index: 999;
   }
 
   .nav-links.active {
@@ -145,4 +146,28 @@
     font-size: 1.1rem;
     width: 100%;
   }
+
+  /* Show close button only on small screens */
+  .nav-close-btn {
+    display: block;
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    background: none;
+    border: none;
+    font-size: 2rem;
+    color: #333;
+    cursor: pointer;
+  }
+}
+
+/* Overlay */
+.nav-overlay {
+  position: fixed;
+  top: 60px;
+  left: 0;
+  width: 100%;
+  height: calc(100% - 60px);
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 998;
 }

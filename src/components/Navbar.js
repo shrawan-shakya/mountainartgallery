@@ -75,7 +75,7 @@ export default function Navbar() {
               <input
                 type="search"
                 className="nav-search-input"
-                placeholder="Search artworks..."
+                placeholder="Search artworks by title, artist, or tag..."
                 value={searchTerm}
                 onChange={e => setSearchTerm(e.target.value)}
                 onKeyDown={handleKeyDown}
@@ -84,7 +84,7 @@ export default function Navbar() {
             </li>
             <li><Link to="/gallery" onClick={closeMenu}>Shop</Link></li>
             <li><Link to="/sale" onClick={closeMenu}><span className="nav-sale">Sale</span></Link></li>
-            <li><Link to="/new" onClick={closeMenu}><span className="nav-new">New <span className="star">★</span></span></Link></li>
+            <li><Link to="/new" onClick={closeMenu}><span className="nav-new">New</span></Link></li>
             <li><Link to="/gift" onClick={closeMenu}>Gift</Link></li>
             <li><Link to="/how-to-buy" onClick={closeMenu}>How to Buy</Link></li>
             <li><a href="/about" onClick={closeMenu}>About</a></li>

@@ -107,7 +107,7 @@
   .home-header .hero-content {
     margin: 0;
     max-width: 100%;
-    padding: 2rem 1rem;
+    padding: 2rem 2rem;
     background: #fdfdfd;
     text-align: center;
   border: 6px solid #fff;
@@ -127,7 +127,7 @@
   }
 
   .hero-text-mobile h1 {
-    font-size: 1.75rem;
+    font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 1rem;
     color: #111;
@@ -143,7 +143,7 @@
 
   .explore-button {
     margin-top: 1.5rem;
-    padding: 10px 24px;
+    padding: 18px 24px;
     font-size: 0.95rem;
     width: 100%;
     max-width: 220px;

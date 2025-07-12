@@ -114,7 +114,7 @@
     top: 0;
     right: 0;
     height: 100%;
-    width: 260px;
+    width: 100%;
     background: #fff;
     flex-direction: column;
     align-items: flex-start;
@@ -129,6 +129,8 @@
 
   .nav-links.active {
     transform: translateX(0);
+    text-align: center;
+    
   }
 
   .nav-search-input {

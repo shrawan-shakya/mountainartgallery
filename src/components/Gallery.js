@@ -1,3 +1,4 @@
+// components/Gallery.js
 import React, { useEffect, useState } from 'react';
 import { collection, getDocs } from 'firebase/firestore';
 import { db } from '../firebase';
@@ -12,7 +13,6 @@ export default function Gallery({ searchTerm = '' }) {
   const [mediumFilter, setMediumFilter] = useState('');
   const [sort, setSort] = useState('');
 
-  // Sync internal search state when prop changes
   useEffect(() => {
     setSearch(searchTerm);
   }, [searchTerm]);

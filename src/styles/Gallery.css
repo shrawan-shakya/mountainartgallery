@@ -27,13 +27,13 @@
 
 .gallery-search {
   flex: 1 1 220px;
-  padding: 6px 12px;  /* Reduced vertical padding for smaller height */
+  padding: 6px 12px;
   font-size: 1rem;
   border: 1.5px solid #ccc;
   border-radius: 4px;
   background-color: #fff;
   outline: none;
-  height: 32px;  /* Reduced from 36px */
+  height: 32px;
   transition: border-color 0.3s ease;
   font-family: inherit;
 }
@@ -116,12 +116,12 @@
 /* Masonry Layout */
 .gallery-masonry-grid {
   display: flex;
-  margin-left: -30px; /* gutter size offset */
+  margin-left: -30px;
   width: auto;
 }
 
 .gallery-masonry-column {
-  padding-left: 30px; /* gutter size */
+  padding-left: 30px;
   background-clip: padding-box;
 }
 
@@ -235,10 +235,24 @@
     width: 100%;
   }
 
-  /* Fix search input height on mobile */
   .gallery-search {
+    all: unset;
+    display: block;
+    width: 100%;
+    padding: 6px 12px;
+    font-size: 1rem;
     height: 32px;
-    font-size: 0.95rem;
+    border: 1.5px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: inherit;
+    box-sizing: border-box;
+  }
+
+  .gallery-search:focus {
+    border-color: #111;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    outline: none;
   }
 
   .gallery-price-label {

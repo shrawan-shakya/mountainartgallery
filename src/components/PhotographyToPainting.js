@@ -17,13 +17,13 @@ export default function PhotographyToPainting() {
           {/* SVG behind text */}
           <img src={brush1} alt="" className="brush-behind-heading" aria-hidden="true" />
           
-          <h2>Transform Your Memories into Art</h2>
+          <h2>Custom Hand-Painted Portraits from Your Photos</h2>
           <p>
-            Turn your favorite photos into beautiful hand-painted artworks by talented Nepali artists.
+            Turn any image into a professional painting with Mountain Art Gallery’s photo-to-art service. Perfect for gifts, decor, and keepsakes.
           </p>
           <div className="center-button-wrapper">
             <Link to="/photo-to-painting" className="explore-button">
-              Learn How
+              Start Your Order
             </Link>
           </div>
         </div>

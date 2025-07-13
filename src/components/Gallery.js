@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import Masonry from 'react-masonry-css';
 import '../styles/Gallery.css';
 
-export default function Gallery({ searchTerm = '' }) {
+export default function Gallery({ searchTerm = '', category = '' }) {
   const [artworks, setArtworks] = useState([]);
   const [search, setSearch] = useState(searchTerm);
   const [priceRange, setPriceRange] = useState({ min: '', max: '' });
@@ -39,6 +39,14 @@ export default function Gallery({ searchTerm = '' }) {
       const inTitle = art.title?.toLowerCase().includes(searchLower);
       const inTags = (art.tags || []).some(tag => tag.toLowerCase().includes(searchLower));
       return search === '' || inTitle || inTags;
+    })
+    .filter(art => {
+      if (category === '') return true;
+
+      const catLower = category.toLowerCase();
+      const inTags = (art.tags || []).some(tag => tag.toLowerCase() === catLower);
+      const inMedium = art.medium?.toLowerCase() === catLower;
+      return inTags || inMedium;
     })
     .filter(art => {
       if (!mediumFilter) return true;

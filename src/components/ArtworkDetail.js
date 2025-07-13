@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { db } from '../firebase';
 import '../styles/ArtworkDetail.css';
+import '../styles/Breadcrumb.css';
 
 export default function ArtworkDetail() {
   const { id } = useParams();
@@ -74,6 +75,15 @@ export default function ArtworkDetail() {
 
   return (
     <>
+      {/* Breadcrumb */}
+      <div className="breadcrumb">
+        <Link to="/" className="breadcrumb-link">Home</Link>
+        <span className="breadcrumb-separator">›</span>
+        <Link to="/gallery" className="breadcrumb-link">Shop</Link>
+        <span className="breadcrumb-separator">›</span>
+        <span>{artwork.artist}</span>
+      </div>
+
       <div className="artwork-detail-container">
         <div className="artwork-detail-image-wrapper">
           <img
@@ -87,7 +97,6 @@ export default function ArtworkDetail() {
           <p className="artwork-detail-artist"><i>By {artwork.artist}</i></p>
           <h1 className="artwork-detail-title">{artwork.title}</h1>
           <p className="artwork-detail-price">${artwork.price.toFixed(2)}</p>
-          
           <p className="artwork-detail-medium"><strong>Medium:</strong> {artwork.medium}</p>
           <p className="artwork-detail-dimensions"><strong>Dimensions:</strong> {artwork.dimensions}</p>
           <p className="artwork-detail-description">{artwork.description}</p>

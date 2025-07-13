@@ -62,7 +62,7 @@ export default function ArtworkDetail() {
         setTimeout(() => {
           setMessageSent(false);
           setShowModal(false);
-        }, 2500); // close after 2.5s
+        }, 2500);
       } else {
         alert('Failed to send message. Please try again later.');
       }

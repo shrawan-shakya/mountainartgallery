@@ -66,6 +66,41 @@
   background-color: #003d99;
 }
 
+/* Sticky Enquire Button on Mobile */
+@media (max-width: 768px) {
+  .artwork-detail-container {
+    flex-direction: column;
+    margin: 20px;
+    padding-bottom: 60px; /* Space for sticky button */
+  }
+
+  .artwork-detail-image-wrapper,
+  .artwork-detail-info {
+    flex: none;
+    width: 100%;
+  }
+
+  .artwork-detail-enquire-button {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 16px 0;
+    font-size: 1.1rem;
+    background-color: #0055cc;
+    color: white;
+    border-radius: 0;
+    box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 3000;
+    text-align: center;
+  }
+
+  .enquiry-modal {
+    padding: 18px;
+  }
+}
+
 /* Modal */
 .enquiry-modal-overlay {
   position: fixed;
@@ -79,6 +114,10 @@
   justify-content: center;
   align-items: flex-start;
   padding-top: 120px;
+
+  /* For modal fade-in */
+  opacity: 1;
+  animation: fadeIn 0.3s ease forwards;
 }
 
 .enquiry-modal {
@@ -90,6 +129,10 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 2001;
+
+  /* For slide-up */
+  transform: translateY(0);
+  animation: slideUp 0.3s ease forwards;
 }
 
 .enquiry-modal h3 {
@@ -163,25 +206,13 @@
   font-size: 1.2rem;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .artwork-detail-container {
-    flex-direction: column;
-    margin: 20px;
-  }
+/* Animations */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
 
-  .artwork-detail-image-wrapper,
-  .artwork-detail-info {
-    flex: none;
-    width: 100%;
-  }
-
-  .artwork-detail-enquire-button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .enquiry-modal {
-    padding: 18px;
-  }
+@keyframes slideUp {
+  from {transform: translateY(20px);}
+  to {transform: translateY(0);}
 }

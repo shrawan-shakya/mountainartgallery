@@ -1,3 +1,4 @@
+// src/components/Navbar.js
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -25,7 +26,6 @@ export default function Navbar() {
   const handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       const trimmedTerm = searchTerm.trim();
-
       if (!trimmedTerm) {
         if (!location.pathname.startsWith('/gallery')) {
           navigate('/gallery');

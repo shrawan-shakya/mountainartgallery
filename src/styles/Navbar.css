@@ -5,6 +5,7 @@
   position: sticky;
   top: 0;
   z-index: 1000;
+  transition: top 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.scrolled {
@@ -20,7 +21,6 @@
   justify-content: space-between;
   height: 60px;
 }
-
 
 .navbar-logo img {
   height: 60px;
@@ -72,12 +72,10 @@
   font-family: inherit;
   width: 360px;
   max-width: 500px;
-  transition: border-color 0.3s ease;
-  background-color:#f1f1f1
+  background-color: #f1f1f1;
 }
 
 .nav-search-input:focus {
-  border-color: #000;
   outline: none;
 }
 
@@ -92,7 +90,6 @@
     display: flex;
   }
 
-  /* Hide hamburger icon when menu is open */
   .hamburger.open {
     display: none;
   }
@@ -117,8 +114,6 @@
 
   .nav-links.active {
     transform: translateX(0);
-    text-align: center;
-    
   }
 
   .nav-search-input {
@@ -139,7 +134,6 @@
     width: 100%;
   }
 
-  /* Show close button only on small screens */
   .nav-close-btn {
     display: block;
     position: absolute;
@@ -153,7 +147,6 @@
   }
 }
 
-/* Overlay */
 .nav-overlay {
   position: fixed;
   top: 60px;

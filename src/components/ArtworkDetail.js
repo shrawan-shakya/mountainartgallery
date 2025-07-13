@@ -84,12 +84,12 @@ export default function ArtworkDetail() {
           />
         </div>
         <div className="artwork-detail-info">
+          <p className="artwork-detail-artist"><i>By {artwork.artist}</i></p>
           <h1 className="artwork-detail-title">{artwork.title}</h1>
-          <p className="artwork-detail-artist"><strong>Artist:</strong> {artwork.artist}</p>
-          <p className="artwork-detail-price"><strong>Price:</strong> ${artwork.price.toFixed(2)}</p>
+          <p className="artwork-detail-price">${artwork.price.toFixed(2)}</p>
+          
           <p className="artwork-detail-medium"><strong>Medium:</strong> {artwork.medium}</p>
           <p className="artwork-detail-dimensions"><strong>Dimensions:</strong> {artwork.dimensions}</p>
-          <p className="artwork-detail-tags"><strong>Tags:</strong> {artwork.tags?.join(', ')}</p>
           <p className="artwork-detail-description">{artwork.description}</p>
 
           <button className="artwork-detail-enquire-button" onClick={handleOpenModal}>

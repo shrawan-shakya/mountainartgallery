@@ -27,17 +27,23 @@
 
 .artwork-detail-title {
   font-size: 2.2rem;
-  margin-bottom: 12px;
-  color: #003d99;
+  margin-top: 12px;
+  color: #2f2f2f;
+}
+
+/* Emphasize price */
+.artwork-detail-price {
+  margin: 18px 0;
+  font-size: 1.6rem;       /* bigger font */
+  font-weight: 700;        /* bolder */
+  color: #343434;          /* a strong, attention-grabbing red */
 }
 
 .artwork-detail-artist,
-.artwork-detail-price,
 .artwork-detail-medium,
-.artwork-detail-dimensions,
-.artwork-detail-tags {
+.artwork-detail-dimensions{
   margin: 8px 0;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #444;
 }
 
@@ -49,6 +55,7 @@
   white-space: pre-line;
 }
 
+/* Keep your button CSS unchanged */
 .artwork-detail-enquire-button {
   align-self: flex-start;
   padding: 12px 24px;
@@ -101,7 +108,7 @@
   }
 }
 
-/* Modal */
+/* Modal and animations unchanged... */
 .enquiry-modal-overlay {
   position: fixed;
   top: 0;
@@ -115,7 +122,6 @@
   align-items: flex-start;
   padding-top: 120px;
 
-  /* For modal fade-in */
   opacity: 1;
   animation: fadeIn 0.3s ease forwards;
 }
@@ -130,7 +136,6 @@
   position: relative;
   z-index: 2001;
 
-  /* For slide-up */
   transform: translateY(0);
   animation: slideUp 0.3s ease forwards;
 }

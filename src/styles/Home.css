@@ -99,6 +99,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 50vh;
   }
 
   .hero-image-mobile {
@@ -114,10 +115,8 @@
   .home-header .hero-content {
     position: absolute;
     z-index: 2;
-
     text-align: center;
     padding: 1rem;
-    background: rgba(255, 255, 255, 0.85); /* Optional subtle overlay */
     border: none;
     box-shadow: none;
     margin: 0;
@@ -133,16 +132,16 @@
   }
 
   .hero-text-mobile h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    color: #111;
+    color: #ffffff;
     text-align: center;
   }
 
   .home-header .subtitle {
     font-size: 1rem;
-    color: #222;
+    color: #ffffff;
     line-height: 1.5;
   }
 
@@ -151,6 +150,6 @@
     padding: 14px 24px;
     font-size: 0.95rem;
     width: 100%;
-    max-width: 240px;
+    max-width: 200px;
   }
 }

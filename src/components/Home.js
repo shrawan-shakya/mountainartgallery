@@ -34,9 +34,9 @@ export default function Home() {
           {/* Mobile Hero Text */}
           <div className="hero-text-mobile">
             <h1>Find Your Next Masterpiece</h1>
-            <p className="subtitle">Thousands of stunning paintings created by passionate artists from Nepal.
+            {/* <p className="subtitle">Thousands of stunning paintings created by passionate artists from Nepal.
 
-</p>
+</p> */}
           </div>
 
           <Link to="/gallery" className="explore-button">

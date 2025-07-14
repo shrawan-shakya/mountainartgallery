@@ -121,11 +121,12 @@
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    padding: 0rem;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.85); /* Optional subtle overlay */
     border: none;
     box-shadow: none;
     margin: 0;
-    max-width: 100%;
+    max-width: 90%;
   }
 
   .hero-text-desktop {
@@ -140,13 +141,13 @@
     font-size: 2.2rem;
     font-weight: 800;
     margin-bottom: 1rem;
-    color: #fefefe;
+    color: #111;
     text-align: center;
   }
 
   .home-header .subtitle {
     font-size: 1rem;
-    color: #efefef;
+    color: #222;
     line-height: 1.5;
   }
 
